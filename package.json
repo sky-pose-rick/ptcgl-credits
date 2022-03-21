@@ -1,7 +1,7 @@
 {
   "name": "ptcgl-credits",
   "homepage": "https://sky-pose-rick.github.io/ptcgl-credits/",
-  "type":"module",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,8 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "commander": "^8.3.0",
+    "dotenv": "^10.0.0",
+    "node-fetch": "^3.2.3",
     "ptcgo-parser": "^0.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
