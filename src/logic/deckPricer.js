@@ -18,7 +18,7 @@ async function priceDeck(importText) {
       const newCard = { ...card };
       newCard.rarity = data.data.rarity;
       newCard.costPerCopy = craftingCosts[newCard.rarity];
-      newCard.totalCost = newCard.cost * newCard.amount;
+      newCard.totalCost = newCard.costPerCopy * newCard.amount;
       resolve(newCard);
     })
     promiseArray.push(newPromise);
