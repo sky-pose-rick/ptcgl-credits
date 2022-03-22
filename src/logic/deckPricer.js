@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import ptcgoParser from './ptcgoParser.js';
 import craftingCosts from './craftingCosts.js';
 
