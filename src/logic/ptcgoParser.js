@@ -68,11 +68,21 @@ const parse = (decklist) => {
           let isEnergy = false;
 
           if (set && set.startsWith('PR')) {
+            // eslint-disable-next-line prefer-destructuring
             promoSet = set.split('-')[1];
           }
 
           if (BASIC_ENERGY_TYPES.indexOf(name) >= 0) {
             isEnergy = true;
+          }
+
+          let idCode = null;
+          if (promoSet) {
+            idCode = `${setcodes[set]}-${promoSet}${code}`;
+          } else if (isEnergy) {
+            idCode = `${BASIC_ENERGY_IDS[name]}`;
+          } else {
+            idCode = `${setcodes[set]}-${code}`;
           }
 
           return {
@@ -81,14 +91,11 @@ const parse = (decklist) => {
             set,
             code,
             ptcgoio: {
-              id: promoSet
-                ? `${setcodes[set]}-${promoSet}${code}`
-                : isEnergy
-                  ? `${BASIC_ENERGY_IDS[name]}`
-                  : `${setcodes[set]}-${code}`,
+              id: idCode,
             },
           };
         }
+        return null;
       })
       .filter((c) => c),
   };

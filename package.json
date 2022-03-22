@@ -1,7 +1,6 @@
 {
   "name": "ptcgl-credits",
   "homepage": "https://sky-pose-rick.github.io/ptcgl-credits/",
-  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
