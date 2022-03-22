@@ -2,7 +2,7 @@
 import setcodes from './sets.js';
 
 const SET_PATTERN = /(?:\* )?(\d+) (.*) ([A-Z]{2,3}|[A-Z]{2}-[A-Z]{2}|[A-Z0-9]{3})? (\d+|XY\d+|BW\d+)/;
-const BASIC_ENERGY_PATTERN = /(?:\* )?(\d+) (Darkness|Fairy|Fighting|Fire|Grass|Lightning|Metal|Psychic|Water) Energy.*/;
+const BASIC_ENERGY_COUNT_PATTERN = /(?:\* )?\d+/;
 
 const BASIC_ENERGY_TYPES = [
   'Darkness',
@@ -14,6 +14,18 @@ const BASIC_ENERGY_TYPES = [
   'Metal',
   'Psychic',
   'Water',
+];
+
+const PTCGL_BASIC_ENERGY = [
+  '{D}',
+  '{Y}',
+  '{F}',
+  '{R}',
+  '{G}',
+  '{L}',
+  '{M}',
+  '{P}',
+  '{W}',
 ];
 
 const BASIC_ENERGY_IDS = {
@@ -28,19 +40,19 @@ const BASIC_ENERGY_IDS = {
   Water: 'sm1-166',
 };
 
-const isBasicEnergy = (row) => (
-  BASIC_ENERGY_TYPES.map((energy) => row.includes(`${energy} Energy`)).filter(
-    (c) => c,
-  ).length > 0
-);
+const detectBasicEnergy = (row) => {
+  const result = BASIC_ENERGY_TYPES.findIndex((energy, index) => (row.includes(`${energy} Energy`)
+    || row.includes(`${PTCGL_BASIC_ENERGY[index]} Energy`)));
+  return BASIC_ENERGY_TYPES[result];
+};
 
 const parseRow = (row) => {
-  let result = null;
-  if (isBasicEnergy(row)) {
-    result = row.match(BASIC_ENERGY_PATTERN);
-  } else {
-    result = row.match(SET_PATTERN);
+  const isBasicEnergy = detectBasicEnergy(row);
+  if (isBasicEnergy) {
+    const energyCount = row.match(BASIC_ENERGY_COUNT_PATTERN)[0];
+    return [energyCount, isBasicEnergy];
   }
+  const result = row.match(SET_PATTERN);
   return result && result.slice(1);
 };
 
@@ -84,4 +96,4 @@ const parse = (decklist) => {
   return parsed;
 };
 
-export default { parse };
+export default { parse, parseRow };
