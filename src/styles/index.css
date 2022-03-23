@@ -85,6 +85,7 @@ form{
 footer {
   background-color: white;
   text-align: center;
-  padding: 5px;
+  padding: 5px 0px;
   margin-top: auto;
+  width: 100%;
 }
