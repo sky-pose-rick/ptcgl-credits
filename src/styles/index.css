@@ -38,4 +38,5 @@ form{
 
 .grid-filler {
   grid-column: 1 / 5;
+  text-align: right;
 }

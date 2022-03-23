@@ -49,8 +49,15 @@ function App() {
             <CardRow key={`${listsAccepted}-${index}`} card={card} adjustGrandTotal={adjustGrandTotal} />
           ))}
           <div className="CardRow">
-            <div className="grid-filler" />
-            <div className="total">{`Total: ${total} Credits`}</div>
+            <div className="grid-filler">Total (Credits)</div>
+            <div className="total">{total}</div>
+          </div>
+          <div className="CardRow">
+            <div className="grid-filler">Total (USD, $1.00 = 1600 Credits)</div>
+            <div className="total">
+              $
+              {(total / 1600).toFixed(2)}
+            </div>
           </div>
         </div>
       </div>
