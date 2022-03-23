@@ -1,41 +1,57 @@
 import React, { useState } from 'react';
+import CardRow from './components/CardRow';
 import deckPricer from './logic/deckPricer';
 
-function onSubmit(e, setPriceData) {
-  e.preventDefault();
-  console.log(e);
-  const textarea = e.target.form[0];
-  console.log(textarea.value);
-
-  deckPricer.priceDeck(textarea.value).then((result) => {
-    setPriceData(result);
-  });
-}
-
 function App() {
-  const [priceData, setPriceData] = useState({});
+  const [cards, setCards] = useState({});
+  const [total, setTotal] = useState(0);
+  const [listsAccepted, setListsAccepted] = useState(0);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // console.log(e);
+    const textarea = e.target.form[0];
+    // console.log(textarea.value);
+
+    deckPricer.priceDeck(textarea.value).then((result) => {
+      if (result.cards.length > 0) {
+        setCards(result.cards);
+        setTotal(result.total);
+        setListsAccepted(listsAccepted + 1);
+      }
+    });
+  };
+
+  const adjustGrandTotal = (diff) => {
+    setTotal((prev) => prev + diff);
+  };
 
   return (
     <div className="App">
+      <h1>PTCGL Deck Pricer</h1>
       <form>
-        <textarea placeholder="Export your decklist here." />
-        <button type="submit" onClick={(e) => { onSubmit(e, setPriceData); }}>Price your deck!</button>
+        <textarea placeholder="Export your decklist here." rows="10" cols="30" />
+        <button type="submit" onClick={onSubmit}>Price your deck!</button>
       </form>
-      {Number.isInteger(priceData.total)
+      {listsAccepted > 0
       && (
       <div>
-        <div>
-          {priceData.cards.map((card, index) => (
+        <div className="price-table">
+          <div className="CardRow">
+            <div className="num-list">Amount</div>
+            <div className="num-craft">Amount to Craft</div>
+            <div className="cost">Cost Per Card</div>
+            <div className="card-name">Card Name</div>
+            <div className="total">Total Card Cost</div>
+          </div>
+          {cards.map((card, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>{card.name}</div>
+            <CardRow key={`${listsAccepted}-${index}`} card={card} adjustGrandTotal={adjustGrandTotal} />
           ))}
-        </div>
-        <div>
-          Total:
-          {' '}
-          {priceData.total}
-          {' '}
-          Credits
+          <div className="CardRow">
+            <div className="grid-filler" />
+            <div className="total">{`Total: ${total} Credits`}</div>
+          </div>
         </div>
       </div>
       )}
