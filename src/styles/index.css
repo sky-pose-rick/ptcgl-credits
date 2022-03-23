@@ -4,3 +4,38 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+h1{
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-table{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CardRow {
+  display: grid;
+  grid-template-columns: 70px 100px 100px 1fr 100px;
+  width: 700px;
+}
+
+.CardRow>div {
+  border: solid 1px black;
+}
+
+.num-craft>input{
+  width:100%;
+  box-sizing: border-box;
+}
+
+.grid-filler {
+  grid-column: 1 / 5;
+}
