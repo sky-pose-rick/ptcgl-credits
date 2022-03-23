@@ -35,7 +35,7 @@ function App() {
       </form>
       {listsAccepted > 0
       && (
-      <div>
+      <div className="price-display">
         <div className="price-table">
           <div className="CardRow">
             <div className="num-list">Amount</div>
@@ -62,6 +62,11 @@ function App() {
         </div>
       </div>
       )}
+      <footer>
+        Card searching provided by
+        {' '}
+        <a href="https://pokemontcg.io/">pokemontcg.io</a>
+      </footer>
     </div>
   );
 }
