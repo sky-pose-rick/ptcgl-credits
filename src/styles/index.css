@@ -1,8 +1,10 @@
 body {
-  
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App{
@@ -35,15 +37,18 @@ form{
   margin-bottom: 50px;
 }
 
+.card-count {
+	text-align: center;
+}
+
 .price-table{
   background-color: white;
-  width: auto;
+  width: min(95vw, 700px);;
 }
 
 .CardRow {
   display: grid;
-  grid-template-columns: 70px 100px 100px 1fr 100px;
-  width: 700px;
+  grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
 }
 
 .CardRow>div {

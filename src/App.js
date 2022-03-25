@@ -38,7 +38,7 @@ function App() {
       {listsAccepted > 0
       && (
       <div className="price-display">
-        <div>
+        <div className="card-count">
           Cards Loaded:
           {' '}
           {cardCount}
