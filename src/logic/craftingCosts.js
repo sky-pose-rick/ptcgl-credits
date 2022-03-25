@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-const craftingCosts = {
+const rarityCosts = {
   'Amazing Rare': 600,
   'Classic Collection': 2000,
   'Common': 40,
@@ -29,4 +29,14 @@ const craftingCosts = {
   'VM': 1025,
 };
 
-export default craftingCosts;
+const subtypeCosts = {
+  'EX': 750,
+  'BREAK': 600,
+  'GX': 750,
+  'V': 750,
+  'VMAX': 1025,
+  'VSTAR': 1025,
+  'V-UNION': 750,
+};
+
+export default { rarityCosts, subtypeCosts };

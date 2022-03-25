@@ -1,6 +1,26 @@
 import ptcgoParser from './ptcgoParser.js';
 import craftingCosts from './craftingCosts.js';
 
+function determinePrice(card, data) {
+  if (card.isEnergy) {
+    return 0;
+  }
+
+  // promos all have promo rarity
+  if (card.rarity === 'Promo') {
+    let maxCost = 400;
+    data.subtypes.forEach((subtype) => {
+      const cost = craftingCosts.subtypeCosts[subtype];
+      if (cost > maxCost) {
+        maxCost = cost;
+      }
+    });
+    return maxCost;
+  }
+
+  return craftingCosts.rarityCosts[card.rarity];
+}
+
 async function priceDeck(importText) {
   const parsed = ptcgoParser.parse(importText);
 
@@ -27,7 +47,7 @@ async function priceDeck(importText) {
       } else {
         const newCard = { ...card };
         newCard.rarity = data.data.rarity;
-        newCard.costPerCopy = craftingCosts[newCard.rarity];
+        newCard.costPerCopy = determinePrice(newCard, data.data);
         newCard.totalCost = newCard.costPerCopy * newCard.amount;
         resolve(newCard);
       }
