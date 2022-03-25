@@ -68,26 +68,32 @@ const detectCard = (row) => {
   const basicEnergyType = detectBasicEnergy(row);
   if (basicEnergyType) {
     const energyCount = row.match(BASIC_ENERGY_COUNT_PATTERN)[0];
-    return [energyCount, basicEnergyType];
+    return {
+      amount: energyCount,
+      name: basicEnergyType,
+      isEnergy: true,
+    };
   }
   const result = row.match(SET_PATTERN);
-  return result && result.slice(1);
+  return {
+    amount: result[1],
+    name: result[2],
+    set: result[3],
+    code: result[4],
+  };
 };
 
 const parseRow = (row) => {
   const card = detectCard(row);
   if (card) {
-    const [amount, name, set, code] = card;
+    const {
+      name, set, code, isEnergy,
+    } = card;
     let promoSet = null;
-    let isEnergy = false;
 
     if (set && set.startsWith('PR')) {
       // eslint-disable-next-line prefer-destructuring
       promoSet = set.split('-')[1];
-    }
-
-    if (BASIC_ENERGY_TYPES.indexOf(name) >= 0) {
-      isEnergy = true;
     }
 
     let idCode = null;
@@ -99,15 +105,10 @@ const parseRow = (row) => {
       idCode = `${setcodes[set]}-${code}`;
     }
 
-    return {
-      amount,
-      name,
-      set,
-      code,
-      ptcgoio: {
-        id: idCode,
-      },
+    card.ptcgoio = {
+      id: idCode,
     };
+    return card;
   }
   return null;
 };

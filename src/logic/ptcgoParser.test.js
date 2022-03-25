@@ -107,3 +107,15 @@ describe('test special energy cards', () => {
     expect(card.name).toMatch(/Powerful {C} Energy/i);
   });
 });
+
+it('has a basic energy flag', () => {
+  const row1 = '12 Basic {W} Energy Energy 38';
+  const card1 = PTCGOParser.parseRow(row1);
+
+  expect(card1.isEnergy).toBeTruthy();
+
+  const row2 = '3 Hiding Darkness Energy DAA 175';
+  const card2 = PTCGOParser.parseRow(row2);
+
+  expect(card2.isEnergy).toBeFalsy();
+});
