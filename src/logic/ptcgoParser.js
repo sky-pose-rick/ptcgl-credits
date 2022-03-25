@@ -64,7 +64,7 @@ const detectBasicEnergy = (row) => {
   return null;
 };
 
-const parseRow = (row) => {
+const detectCard = (row) => {
   const basicEnergyType = detectBasicEnergy(row);
   if (basicEnergyType) {
     const energyCount = row.match(BASIC_ENERGY_COUNT_PATTERN)[0];
@@ -74,47 +74,49 @@ const parseRow = (row) => {
   return result && result.slice(1);
 };
 
+const parseRow = (row) => {
+  const card = detectCard(row);
+  if (card) {
+    const [amount, name, set, code] = card;
+    let promoSet = null;
+    let isEnergy = false;
+
+    if (set && set.startsWith('PR')) {
+      // eslint-disable-next-line prefer-destructuring
+      promoSet = set.split('-')[1];
+    }
+
+    if (BASIC_ENERGY_TYPES.indexOf(name) >= 0) {
+      isEnergy = true;
+    }
+
+    let idCode = null;
+    if (promoSet) {
+      idCode = `${setcodes[set]}-${promoSet}${code}`;
+    } else if (isEnergy) {
+      idCode = `${BASIC_ENERGY_IDS[name]}`;
+    } else {
+      idCode = `${setcodes[set]}-${code}`;
+    }
+
+    return {
+      amount,
+      name,
+      set,
+      code,
+      ptcgoio: {
+        id: idCode,
+      },
+    };
+  }
+  return null;
+};
+
 const parse = (decklist) => {
   const parsed = {
     cards: decklist
       .split('\n')
-      .map((row) => {
-        const card = parseRow(row);
-        if (card) {
-          const [amount, name, set, code] = card;
-          let promoSet = null;
-          let isEnergy = false;
-
-          if (set && set.startsWith('PR')) {
-            // eslint-disable-next-line prefer-destructuring
-            promoSet = set.split('-')[1];
-          }
-
-          if (BASIC_ENERGY_TYPES.indexOf(name) >= 0) {
-            isEnergy = true;
-          }
-
-          let idCode = null;
-          if (promoSet) {
-            idCode = `${setcodes[set]}-${promoSet}${code}`;
-          } else if (isEnergy) {
-            idCode = `${BASIC_ENERGY_IDS[name]}`;
-          } else {
-            idCode = `${setcodes[set]}-${code}`;
-          }
-
-          return {
-            amount,
-            name,
-            set,
-            code,
-            ptcgoio: {
-              id: idCode,
-            },
-          };
-        }
-        return null;
-      })
+      .map((row) => parseRow(row))
       .filter((c) => c),
   };
 
