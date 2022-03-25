@@ -115,6 +115,12 @@ const setcodes = {
   FST: 'swsh8',
   BRS: 'swsh9',
   // BRS: 'swsh9tg',
+
+  //  limitless's codes for promo sets
+  BWP: 'bwp',
+  XYP: 'xyp',
+  SMP: 'smp',
+  SSP: 'swshp',
 };
 
 export default setcodes;
