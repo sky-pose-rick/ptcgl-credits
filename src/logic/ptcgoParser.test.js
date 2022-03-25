@@ -126,7 +126,6 @@ describe('promo cards', () => {
     const card = PTCGOParser.parseRow(row);
 
     expect(card.ptcgoio.id).toMatch(/smp-sm201/i);
-    // swshp-SWSH151
   });
 
   it('4 Jolteon V SSP 183', () => {
@@ -136,11 +135,20 @@ describe('promo cards', () => {
     expect(card.ptcgoio.id).toMatch(/swshp-SWSH183/i);
   });
 
+  // TODO: fix this error
   it('* 4 Zacian V PR-SW 18', () => {
     const row = '* 4 Zacian V PR-SW 18';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.ptcgoio.id).toMatch(/swshp-SWSH18/i);
+    expect(card.ptcgoio.id).toMatch(/swshp-SWSH018/i);
+  });
+
+  // fix this too
+  it('* 4 Grookey PR-SWSH 1', () => {
+    const row = '* 4 Grookey PR-SWSH 1';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/swshp-SWSH001/i);
   });
 
   it('2 Dragonite V PR-SWSH 154', () => {
@@ -158,4 +166,12 @@ describe('subset numbering', () => {
 
     expect(card.ptcgoio.id).toMatch(/g1-RC27/i);
   });
+
+  /* TODO:
+    shiny vault 1
+    shiny vault 2
+    trainger gallery
+    legendary collection
+    others?
+  */
 });
