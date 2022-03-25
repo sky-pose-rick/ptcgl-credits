@@ -124,16 +124,16 @@ const regularSets = {
 };
 
 const promoSets = {
-  'PR-BLW': 'bwp-bw',
-  'PR-XY': 'xyp-xy',
-  'PR-SM': 'smp-sm',
-  'PR-SW': 'swshp-swsh',
+  'PR-BLW': 'bwp-BW',
+  'PR-XY': 'xyp-XY',
+  'PR-SM': 'smp-SM',
+  'PR-SW': 'swshp-SWSH',
 
   //  limitless's codes for promo sets
-  BWP: 'bwp-bw',
-  XYP: 'xyp-xy',
-  SMP: 'smp-sm',
-  SSP: 'swshp-swsh',
+  BWP: 'bwp-BW',
+  XYP: 'xyp-XY',
+  SMP: 'smp-SM',
+  SSP: 'swshp-SWSH',
 };
 
 export default { regularSets, promoSets };
