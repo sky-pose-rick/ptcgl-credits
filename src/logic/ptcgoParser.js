@@ -1,7 +1,7 @@
 // copied from https://github.com/Hamatti/ptcgo-parser
 import setcodes from './sets.js';
 
-const SET_PATTERN = /(?:\* )?(\d+) (.*) ([A-Z]{2,3}|[A-Z]{2}-[A-Z]{2,4}|[A-Z0-9]{3})? (\d+|XY\d+|BW\d+)/;
+const SET_PATTERN = /(?:\* )?(\d+) (.*) ([A-Z]{2,3}|[A-Z]{2}-[A-Z]{2,4}|[A-Z0-9]{3})? (\d+|XY\d+|BW\d+|SM\d+|SWSH\d+|RC\d+|TG\d+)/;
 const BASIC_ENERGY_COUNT_PATTERN = /(?:\* )?\d+/;
 
 const BASIC_ENERGY_TYPES = [

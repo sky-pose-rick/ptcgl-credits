@@ -150,3 +150,12 @@ describe('promo cards', () => {
     expect(card.ptcgoio.id).toMatch(/swshp-SWSH154/i);
   });
 });
+
+describe('subset numbering', () => {
+  it('1 Wally GEN RC27', () => {
+    const row = '1 Wally GEN RC27';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/g1-RC27/i);
+  });
+});
