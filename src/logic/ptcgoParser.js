@@ -75,12 +75,15 @@ const detectCard = (row) => {
     };
   }
   const result = row.match(SET_PATTERN);
-  return {
-    amount: result[1],
-    name: result[2],
-    set: result[3],
-    code: result[4],
-  };
+  if (result) {
+    return {
+      amount: result[1],
+      name: result[2],
+      set: result[3],
+      code: result[4],
+    };
+  }
+  return null;
 };
 
 const parseRow = (row) => {
@@ -89,20 +92,14 @@ const parseRow = (row) => {
     const {
       name, set, code, isEnergy,
     } = card;
-    let promoSet = null;
-
-    if (set && set.startsWith('PR')) {
-      // eslint-disable-next-line prefer-destructuring
-      promoSet = set.split('-')[1];
-    }
 
     let idCode = null;
-    if (promoSet) {
-      idCode = `${setcodes[set]}-${promoSet}${code}`;
-    } else if (isEnergy) {
+    if (isEnergy) {
       idCode = `${BASIC_ENERGY_IDS[name]}`;
+    } else if (setcodes.promoSets[set]) {
+      idCode = `${setcodes.promoSets[set]}${code}`;
     } else {
-      idCode = `${setcodes[set]}-${code}`;
+      idCode = `${setcodes.regularSets[set]}-${code}`;
     }
 
     card.ptcgoio = {

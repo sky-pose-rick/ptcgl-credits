@@ -119,3 +119,27 @@ it('has a basic energy flag', () => {
 
   expect(card2.isEnergy).toBeFalsy();
 });
+
+describe('promo cards', () => {
+  it('* 3 Reshiram & Charizard-GX PR-SM 201', () => {
+    const row = '* 3 Reshiram & Charizard-GX PR-SM 201';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/smp-sm201/i);
+    // swshp-SWSH151
+  });
+
+  it('4 Jolteon V SSP 183', () => {
+    const row = '4 Jolteon V SSP 183';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/swshp-SWSH183/i);
+  });
+
+  it('* 4 Zacian V PR-SW 18', () => {
+    const row = '* 4 Zacian V PR-SW 18';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/swshp-SWSH18/i);
+  });
+});

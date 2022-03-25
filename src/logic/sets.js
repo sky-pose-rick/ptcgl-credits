@@ -1,8 +1,8 @@
 // copied from https://github.com/Hamatti/ptcgo-parser
 // These setcodes are a mapping from PTCGO code to PokemonTCG.io set id
 
-const setcodes = {
-  BS: 'base1',
+const regularSets = {
+  /* BS: 'base1',
   JU: 'base2',
   PR: 'basep',
   FO: 'base3',
@@ -51,8 +51,8 @@ const setcodes = {
   UL: 'hgss2',
   UD: 'hgss3',
   TM: 'hgss4',
-  CL: 'col1',
-  'PR-BLW': 'bwp',
+  CL: 'col1', */
+  'PR-BLW': 'bwp-bw',
   BLW: 'bw1',
   EPO: 'bw2',
   NVI: 'bw3',
@@ -64,7 +64,7 @@ const setcodes = {
   PLS: 'bw8',
   PLF: 'bw9',
   PLB: 'bw10',
-  'PR-XY': 'xyp',
+  'PR-XY': 'xyp-xy',
   LTR: 'bw11',
   KSS: 'xy0',
   XY: 'xy1',
@@ -81,7 +81,7 @@ const setcodes = {
   FCO: 'xy10',
   STS: 'xy11',
   EVO: 'xy12',
-  'PR-SM': 'smp',
+  'PR-SM': 'smp-sm',
   SUM: 'sm1',
   GRI: 'sm2',
   BUS: 'sm3',
@@ -99,7 +99,7 @@ const setcodes = {
   HIF: 'sm115',
   // no ptcgo code for shiny vault: 'sma',
   CEC: 'sm12',
-  'PR-SW': 'swshp',
+  'PR-SW': 'swshp-swsh',
   SSH: 'swsh1',
   RCL: 'swsh2',
   DAA: 'swsh3',
@@ -123,4 +123,17 @@ const setcodes = {
   SSP: 'swshp',
 };
 
-export default setcodes;
+const promoSets = {
+  'PR-BLW': 'bwp-bw',
+  'PR-XY': 'xyp-xy',
+  'PR-SM': 'smp-sm',
+  'PR-SW': 'swshp-swsh',
+
+  //  limitless's codes for promo sets
+  BWP: 'bwp-bw',
+  XYP: 'xyp-xy',
+  SMP: 'smp-sm',
+  SSP: 'swshp-swsh',
+};
+
+export default { regularSets, promoSets };

@@ -18,7 +18,7 @@ async function priceDeck(importText) {
       // console.log(data);
       if (data.error) {
         // console.error(data.error.message);
-        console.error('Card not found:', card.name, card.set, card.code);
+        console.error('Card not found:', card);
         const newCard = { ...card };
         newCard.rarity = null;
         newCard.costPerCopy = 0;
