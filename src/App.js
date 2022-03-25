@@ -5,6 +5,7 @@ import deckPricer from './logic/deckPricer';
 function App() {
   const [cards, setCards] = useState({});
   const [total, setTotal] = useState(0);
+  const [cardCount, setCardCount] = useState(0);
   const [listsAccepted, setListsAccepted] = useState(0);
 
   const onSubmit = (e) => {
@@ -17,6 +18,7 @@ function App() {
       if (result.cards.length > 0) {
         setCards(result.cards);
         setTotal(result.total);
+        setCardCount(result.cardCount);
         setListsAccepted(listsAccepted + 1);
       }
     });
@@ -36,6 +38,11 @@ function App() {
       {listsAccepted > 0
       && (
       <div className="price-display">
+        <div>
+          Cards Loaded:
+          {' '}
+          {cardCount}
+        </div>
         <div className="price-table">
           <div className="CardRow">
             <div className="num-list">Amount</div>

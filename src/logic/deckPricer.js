@@ -18,7 +18,29 @@ function determinePrice(card, data) {
     return maxCost;
   }
 
-  return craftingCosts.rarityCosts[card.rarity];
+  return craftingCosts.rarityCosts[data.rarity];
+}
+
+async function priceCard(card) {
+  const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
+  const response = await fetch(ptcgioURL);
+  const data = await response.json();
+  const newCard = { ...card };
+
+  // console.log(data);
+  if (data.error) {
+    // console.error(data.error.message);
+    console.error('Card not found:', card);
+
+    newCard.costPerCopy = 0;
+    newCard.totalCost = 0;
+    newCard.notFound = true;
+  } else {
+    newCard.costPerCopy = determinePrice(newCard, data.data);
+    newCard.totalCost = newCard.costPerCopy * newCard.amount;
+  }
+
+  return newCard;
 }
 
 async function priceDeck(importText) {
@@ -27,42 +49,24 @@ async function priceDeck(importText) {
   // const promiseArray = [];
   const promiseArray = [];
   let total = 0;
+  let cardCount = 0;
 
   // process cards one by one
   parsed.cards.forEach((card) => {
-    const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
-    // eslint-disable-next-line no-async-promise-executor
-    const newPromise = new Promise(async (resolve) => {
-      const response = await fetch(ptcgioURL);
-      const data = await response.json();
-      // console.log(data);
-      if (data.error) {
-        // console.error(data.error.message);
-        console.error('Card not found:', card);
-        const newCard = { ...card };
-        newCard.rarity = null;
-        newCard.costPerCopy = 0;
-        newCard.totalCost = 0;
-        newCard.notFound = true;
-      } else {
-        const newCard = { ...card };
-        newCard.rarity = data.data.rarity;
-        newCard.costPerCopy = determinePrice(newCard, data.data);
-        newCard.totalCost = newCard.costPerCopy * newCard.amount;
-        resolve(newCard);
-      }
-    });
-    promiseArray.push(newPromise);
+    promiseArray.push(priceCard(card));
   });
 
   const dataArray = await Promise.all(promiseArray);
   dataArray.forEach((card) => {
+    // console.log(card);
     total += card.totalCost;
+    if (!card.notFound) { cardCount += parseInt(card.amount, 10); }
   });
 
   return {
     total,
     cards: dataArray,
+    cardCount,
   };
 }
 
