@@ -7,7 +7,7 @@ function determinePrice(card, data) {
   }
 
   // promos all have promo rarity
-  if (card.rarity === 'Promo') {
+  if (data.rarity === 'Promo') {
     let maxCost = 400;
     data.subtypes.forEach((subtype) => {
       const cost = craftingCosts.subtypeCosts[subtype];
