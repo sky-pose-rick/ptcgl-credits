@@ -142,4 +142,11 @@ describe('promo cards', () => {
 
     expect(card.ptcgoio.id).toMatch(/swshp-SWSH18/i);
   });
+
+  it('2 Dragonite V PR-SWSH 154', () => {
+    const row = '2 Dragonite V PR-SWSH 154';
+    const card = PTCGOParser.parseRow(row);
+
+    expect(card.ptcgoio.id).toMatch(/swshp-SWSH154/i);
+  });
 });

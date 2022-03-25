@@ -121,6 +121,9 @@ const regularSets = {
   XYP: 'xyp',
   SMP: 'smp',
   SSP: 'swshp',
+
+  // play.limitless's promo sets
+  'PR-SWSH': 'swshp',
 };
 
 const promoSets = {
@@ -134,6 +137,9 @@ const promoSets = {
   XYP: 'xyp-XY',
   SMP: 'smp-SM',
   SSP: 'swshp-SWSH',
+
+  // play.limitless's promo sets
+  'PR-SWSH': 'swshp-SWSH',
 };
 
 export default { regularSets, promoSets };
