@@ -1,6 +1,6 @@
 import PTCGOParser from './ptcgoParser';
 
-describe('test energy cards', () => {
+describe('test basic energy cards', () => {
   it('7 Metal Energy BRS M', () => {
     const row = '7 Metal Energy BRS M';
     const parsedRow = PTCGOParser.parseRow(row);
@@ -71,5 +71,39 @@ describe('test energy cards', () => {
 
     expect(parsedRow[0]).toMatch(/12/);
     expect(parsedRow[1]).toMatch(/water/i);
+  });
+});
+
+describe('test special energy cards', () => {
+  it('3 Hiding Darkness Energy DAA 175', () => {
+    const row = '3 Hiding Darkness Energy DAA 175';
+    const parsedRow = PTCGOParser.parseRow(row);
+
+    expect(parsedRow[0]).toMatch(/3/);
+    expect(parsedRow[1]).toMatch(/Hiding Darkness Energy/i);
+  });
+
+  it('* 4 Horror Psychic Energy RCL 172', () => {
+    const row = '* 4 Horror Psychic Energy RCL 172';
+    const parsedRow = PTCGOParser.parseRow(row);
+
+    expect(parsedRow[0]).toMatch(/4/);
+    expect(parsedRow[1]).toMatch(/Horror Psychic Energy/i);
+  });
+
+  it('3 Coating {M} Energy VIV 163', () => {
+    const row = '3 Coating {M} Energy VIV 163';
+    const parsedRow = PTCGOParser.parseRow(row);
+
+    expect(parsedRow[0]).toMatch(/3/);
+    expect(parsedRow[1]).toMatch(/Coating {M} Energy/i);
+  });
+
+  it('4 Powerful {C} Energy DAA 176', () => {
+    const row = '4 Powerful {C} Energy DAA 176';
+    const parsedRow = PTCGOParser.parseRow(row);
+
+    expect(parsedRow[0]).toMatch(/4/);
+    expect(parsedRow[1]).toMatch(/Powerful {C} Energy/i);
   });
 });

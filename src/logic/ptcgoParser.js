@@ -28,6 +28,18 @@ const PTCGL_BASIC_ENERGY = [
   '{W}',
 ];
 
+const SWSH_SPECIAL_ENERGY = [
+  'RCL 172',
+  'RCL 173',
+  'DAA 174',
+  'DAA 175',
+  'DAA 176',
+  'VIV 162',
+  'VIV 163',
+  'VIV 164',
+  'VIV 165',
+];
+
 const BASIC_ENERGY_IDS = {
   Darkness: 'sm1-170',
   Fairy: 'sm1-172',
@@ -42,15 +54,21 @@ const BASIC_ENERGY_IDS = {
 
 const detectBasicEnergy = (row) => {
   const result = BASIC_ENERGY_TYPES.findIndex((energy, index) => (row.includes(`${energy} Energy`)
-    || row.includes(`${PTCGL_BASIC_ENERGY[index]} Energy`)));
-  return BASIC_ENERGY_TYPES[result];
+    || row.includes(`Basic ${PTCGL_BASIC_ENERGY[index]} Energy`)));
+  if (result > -1) {
+    // filter out swsh special energies that may be detected
+    const special = SWSH_SPECIAL_ENERGY.findIndex((energy) => (row.includes(energy)));
+    if (special > -1) { return null; }
+    return BASIC_ENERGY_TYPES[result];
+  }
+  return null;
 };
 
 const parseRow = (row) => {
-  const isBasicEnergy = detectBasicEnergy(row);
-  if (isBasicEnergy) {
+  const basicEnergyType = detectBasicEnergy(row);
+  if (basicEnergyType) {
     const energyCount = row.match(BASIC_ENERGY_COUNT_PATTERN)[0];
-    return [energyCount, isBasicEnergy];
+    return [energyCount, basicEnergyType];
   }
   const result = row.match(SET_PATTERN);
   return result && result.slice(1);
