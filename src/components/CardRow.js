@@ -58,7 +58,9 @@ function CardRow(props) {
         </select>
       </div>
       <div className="card-name">
-        {`${card.name} ${card.set} ${card.code}`}
+        {card.isEnergy
+          ? `Basic ${card.name} Energy`
+          : `${card.name} ${card.set} ${card.code}`}
       </div>
       <div className="total">
         {totalCost}
