@@ -5,7 +5,7 @@ describe('test basic energy cards', () => {
     const row = '7 Metal Energy BRS M';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/7/);
+    expect(card.amount).toEqual('7');
     expect(card.name).toMatch(/metal/i);
   });
 
@@ -13,7 +13,7 @@ describe('test basic energy cards', () => {
     const row = '* 7 Fire Energy BUS 167';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/7/);
+    expect(card.amount).toEqual('7');
     expect(card.name).toMatch(/fire/i);
   });
 
@@ -21,7 +21,7 @@ describe('test basic energy cards', () => {
     const row = '* 7 Darkness Energy Energy 7';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/7/);
+    expect(card.amount).toEqual('7');
     expect(card.name).toMatch(/darkness/i);
   });
 
@@ -29,7 +29,7 @@ describe('test basic energy cards', () => {
     const row = '2 Basic {P} Energy Energy 40';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/2/);
+    expect(card.amount).toEqual('2');
     expect(card.name).toMatch(/psychic/i);
   });
 
@@ -37,7 +37,7 @@ describe('test basic energy cards', () => {
     const row = '* 12 Metal Energy SMEnergy 8';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/12/);
+    expect(card.amount).toEqual('12');
     expect(card.name).toMatch(/metal/i);
   });
 
@@ -45,7 +45,7 @@ describe('test basic energy cards', () => {
     const row = '* 2 Darkness Energy SWSHEnergy 7';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/2/);
+    expect(card.amount).toEqual('2');
     expect(card.name).toMatch(/darkness/i);
   });
 
@@ -53,7 +53,7 @@ describe('test basic energy cards', () => {
     const row = '4 Basic {F} Energy Energy 41';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/4/);
+    expect(card.amount).toEqual('4');
     expect(card.name).toMatch(/fighting/i);
   });
 
@@ -61,7 +61,7 @@ describe('test basic energy cards', () => {
     const row = '7 Basic {W} Energy Energy 38';
     const card = PTCGOParser.parseRow(row);
 
-    expect(card.amount).toMatch(/7/);
+    expect(card.amount).toEqual('7');
     expect(card.name).toMatch(/water/i);
   });
 
