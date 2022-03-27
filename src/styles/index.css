@@ -43,7 +43,13 @@ form{
 
 .price-table{
   background-color: white;
-  width: min(95vw, 700px);;
+  width: min(95vw, 700px);
+  font-size: min(calc(6px + 1vw),16px);
+}
+
+.table-header {
+	background-color: #b20607;
+	color: #f0f0f0;
 }
 
 .CardRow {
