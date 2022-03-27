@@ -52,6 +52,10 @@ form{
 	color: #f0f0f0;
 }
 
+.error-row {
+	background-color: pink;
+}
+
 .CardRow {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 3fr 1fr;

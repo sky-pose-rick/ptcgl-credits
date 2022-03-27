@@ -19,12 +19,14 @@ function CardRow(props) {
   const { card, adjustGrandTotal } = props;
   const [costPerCopy, setCostPerCopy] = useState(card.costPerCopy);
   const [amount, setAmount] = useState(card.amount);
+  const [hasError, setHasError] = useState(card.notFound);
   const totalCost = costPerCopy * amount;
 
   const onChangeCost = (e) => {
     const newCost = e.target.value;
     adjustGrandTotal((newCost - costPerCopy) * amount);
     setCostPerCopy(newCost);
+    setHasError(false);
   };
 
   const onChangeAmount = (e) => {
@@ -36,7 +38,7 @@ function CardRow(props) {
   };
 
   return (
-    <div className="CardRow">
+    <div className={`CardRow${hasError ? ' error-row' : ''}`}>
       <div className="num-list">
         {card.amount}
       </div>
