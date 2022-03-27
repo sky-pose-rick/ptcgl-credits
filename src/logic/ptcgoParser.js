@@ -94,10 +94,22 @@ const parseRow = (row) => {
     } = card;
 
     let idCode = null;
+    const promoCode = setcodes.promoSets[set];
     if (isEnergy) {
       idCode = `${BASIC_ENERGY_IDS[name]}`;
-    } else if (setcodes.promoSets[set]) {
-      idCode = `${setcodes.promoSets[set]}${code}`;
+    } else if (promoCode) {
+      // special case for SWSH promo numbering
+      if (promoCode === 'swshp-SWSH') {
+        if (code < 10) {
+          idCode = `${promoCode}00${code}`;
+        } else if (code < 100) {
+          idCode = `${promoCode}0${code}`;
+        } else {
+          idCode = `${promoCode}${code}`;
+        }
+      } else {
+        idCode = `${promoCode}${code}`;
+      }
     } else {
       idCode = `${setcodes.regularSets[set]}-${code}`;
     }
