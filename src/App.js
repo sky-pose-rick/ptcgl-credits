@@ -44,7 +44,7 @@ function App() {
           {cardCount}
         </div>
         <div className="price-table">
-          <div className="CardRow">
+          <div className="CardRow table-header">
             <div className="num-list">Amount</div>
             <div className="num-craft">Amount to Craft</div>
             <div className="cost">Cost Per Card</div>

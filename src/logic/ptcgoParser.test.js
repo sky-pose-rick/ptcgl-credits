@@ -135,7 +135,6 @@ describe('promo cards', () => {
     expect(card.ptcgoio.id).toMatch(/swshp-SWSH183/i);
   });
 
-  // TODO: fix this error
   it('* 4 Zacian V PR-SW 18', () => {
     const row = '* 4 Zacian V PR-SW 18';
     const card = PTCGOParser.parseRow(row);
@@ -143,7 +142,6 @@ describe('promo cards', () => {
     expect(card.ptcgoio.id).toMatch(/swshp-SWSH018/i);
   });
 
-  // fix this too
   it('* 4 Grookey PR-SWSH 1', () => {
     const row = '* 4 Grookey PR-SWSH 1';
     const card = PTCGOParser.parseRow(row);

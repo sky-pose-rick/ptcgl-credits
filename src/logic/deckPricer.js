@@ -23,19 +23,30 @@ function determinePrice(card, data) {
 
 async function priceCard(card) {
   const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
-  const response = await fetch(ptcgioURL);
-  const data = await response.json();
+
+  let response;
+
+  try {
+    response = await fetch(ptcgioURL);
+  } catch (e) {
+    console.error(e);
+  }
+
   const newCard = { ...card };
 
   // console.log(data);
-  if (data.error) {
-    // console.error(data.error.message);
+  if (response.status === 429) {
+    console.error('Too many requests to pokemontcg.io API (limit is 60/minute)');
+    newCard.costPerCopy = 0;
+    newCard.totalCost = 0;
+    newCard.notFound = true;
+  } else if (response.status === 404) {
     console.error('Card not found:', card);
-
     newCard.costPerCopy = 0;
     newCard.totalCost = 0;
     newCard.notFound = true;
   } else {
+    const data = await response.json();
     newCard.costPerCopy = determinePrice(newCard, data.data);
     newCard.totalCost = newCard.costPerCopy * newCard.amount;
   }
