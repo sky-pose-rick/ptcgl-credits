@@ -7,12 +7,14 @@ function App() {
   const [total, setTotal] = useState(0);
   const [cardCount, setCardCount] = useState(0);
   const [listsAccepted, setListsAccepted] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log(e);
     const textarea = e.target.form[0];
     // console.log(textarea.value);
+    setLoading(true);
 
     deckPricer.priceDeck(textarea.value).then((result) => {
       if (result.cards.length > 0) {
@@ -21,6 +23,7 @@ function App() {
         setCardCount(result.cardCount);
         setListsAccepted(listsAccepted + 1);
       }
+      setLoading(false);
     });
   };
 
@@ -33,7 +36,7 @@ function App() {
       <h1>PTCGL Deck Pricer</h1>
       <form>
         <textarea placeholder="Export your decklist here." rows="10" cols="30" />
-        <button type="submit" onClick={onSubmit}>Price your deck!</button>
+        <button type="submit" disabled={loading} onClick={onSubmit}>{ loading ? 'Loading...' : 'Price your deck!'}</button>
       </form>
       {listsAccepted > 0
       && (
