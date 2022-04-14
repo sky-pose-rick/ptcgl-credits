@@ -1,7 +1,7 @@
 /* eslint-disable quote-props */
 const rarityCosts = {
   'Amazing Rare': 600,
-  'Classic Collection': 2000,
+  'Classic Collection': 2000, // varies by card
   'Common': 40,
   'LEGEND': 2000,
   'Promo': 400,

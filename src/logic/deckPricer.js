@@ -1,7 +1,8 @@
 import ptcgoParser from './ptcgoParser.js';
 import craftingCosts from './craftingCosts.js';
+import sellingCosts from './sellingCosts.js';
 
-function determinePrice(card, data) {
+function determinePrice(card, data, priceList) {
   if (card.isEnergy) {
     return 0;
   }
@@ -10,7 +11,7 @@ function determinePrice(card, data) {
   if (data.rarity === 'Promo') {
     let maxCost = 400;
     data.subtypes.forEach((subtype) => {
-      const cost = craftingCosts.subtypeCosts[subtype];
+      const cost = priceList.subtypeCosts[subtype];
       if (cost > maxCost) {
         maxCost = cost;
       }
@@ -18,10 +19,10 @@ function determinePrice(card, data) {
     return maxCost;
   }
 
-  return craftingCosts.rarityCosts[data.rarity];
+  return priceList.rarityCosts[data.rarity];
 }
 
-async function priceCard(card) {
+async function priceCard(card, priceList) {
   const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
 
   let response;
@@ -47,14 +48,14 @@ async function priceCard(card) {
     newCard.notFound = true;
   } else {
     const data = await response.json();
-    newCard.costPerCopy = determinePrice(newCard, data.data);
+    newCard.costPerCopy = determinePrice(newCard, data.data, priceList);
     newCard.totalCost = newCard.costPerCopy * newCard.amount;
   }
 
   return newCard;
 }
 
-async function priceDeck(importText) {
+async function priceDeckGeneric(importText, priceList) {
   const parsed = ptcgoParser.parse(importText);
 
   // const promiseArray = [];
@@ -64,7 +65,7 @@ async function priceDeck(importText) {
 
   // process cards one by one
   parsed.cards.forEach((card) => {
-    promiseArray.push(priceCard(card));
+    promiseArray.push(priceCard(card, priceList));
   });
 
   const dataArray = await Promise.all(promiseArray);
@@ -81,4 +82,16 @@ async function priceDeck(importText) {
   };
 }
 
-export default { priceDeck };
+function priceDeckSell(importText) {
+  return priceDeckGeneric(importText, sellingCosts);
+}
+
+function priceDeckBuy(importText) {
+  return priceDeckGeneric(importText, craftingCosts);
+}
+
+function priceDeck(importText) {
+  return priceDeckBuy(importText);
+}
+
+export default { priceDeck, priceDeckBuy, priceDeckSell };
