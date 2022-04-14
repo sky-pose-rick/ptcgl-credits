@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # local testing files
-src/reference
+/reference
 .env
