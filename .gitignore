@@ -29,3 +29,5 @@ yarn-error.log*
 #contains a github PAT
 .npmrc
 
+#subproject
+/deck_merger/node_modules

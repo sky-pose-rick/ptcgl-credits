@@ -1,0 +1,17 @@
+{
+  "name": "deck_merger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "merger.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sky-pose-rick/ptcgl-parser": "^1.0.2",
+    "jest": "^27.5.1"
+  },
+  "type": "module"
+}
