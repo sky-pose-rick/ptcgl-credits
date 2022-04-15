@@ -25,3 +25,7 @@ yarn-error.log*
 # local testing files
 /reference
 .env
+
+#contains a github PAT
+.npmrc
+

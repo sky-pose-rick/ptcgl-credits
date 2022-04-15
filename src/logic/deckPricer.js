@@ -1,4 +1,4 @@
-import ptcgoParser from './ptcgoParser.js';
+import ptcgoParser from '@sky-pose-rick/ptcgl-parser';
 import craftingCosts from './craftingCosts.js';
 import sellingCosts from './sellingCosts.js';
 
