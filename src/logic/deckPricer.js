@@ -1,6 +1,7 @@
 import ptcgoParser from '@sky-pose-rick/ptcgl-parser';
 import craftingCosts from './craftingCosts.js';
 import sellingCosts from './sellingCosts.js';
+import starterCards from './starterCards2022';
 
 function determinePrice(card, data, priceList) {
   if (card.isEnergy) {
@@ -23,6 +24,19 @@ function determinePrice(card, data, priceList) {
 }
 
 async function priceCard(card, priceList) {
+  // don't need to hit api for starter cards
+  if (starterCards.cards[card.ptcgoio.id]) {
+    const newCard = { ...card };
+    const starterCard = starterCards.cards[card.ptcgoio.id];
+
+    newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
+
+    newCard.costPerCopy = starterCard.cost;
+    newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
+
+    return newCard;
+  }
+
   const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
 
   let response;
@@ -34,6 +48,7 @@ async function priceCard(card, priceList) {
   }
 
   const newCard = { ...card };
+  newCard.toCraft = newCard.amount;
 
   // console.log(data);
   if (response.status === 429) {

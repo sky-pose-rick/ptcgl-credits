@@ -623,3 +623,5 @@ const cards = {
     cost: '100',
   },
 };
+
+export default { cards };

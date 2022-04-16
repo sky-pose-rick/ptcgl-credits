@@ -18,7 +18,7 @@ const priceList = [
 function CardRow(props) {
   const { card, adjustGrandTotal } = props;
   const [costPerCopy, setCostPerCopy] = useState(card.costPerCopy);
-  const [amount, setAmount] = useState(card.amount);
+  const [amount, setAmount] = useState(card.toCraft);
   const [hasError, setHasError] = useState(card.notFound);
   const totalCost = costPerCopy * amount;
 
