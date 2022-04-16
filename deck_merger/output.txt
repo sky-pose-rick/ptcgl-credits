@@ -1,0 +1,397 @@
+{
+  'swsh6-69': { amount: '4', name: 'Inkay', set: 'CRE', code: '69', cost: '0' },
+  'swsh5-36': { amount: '4', name: 'Remoraid', set: 'BST', code: '36', cost: '0' },
+  'swsh6-70': { amount: '4', name: 'Malamar', set: 'CRE', code: '70', cost: '0' },
+  'swsh5-37': { amount: '4', name: 'Octillery', set: 'BST', code: '37', cost: '0' },
+  'swsh3-104': { amount: '1', name: 'Crobat V', set: 'DAA', code: '104', cost: '0' },
+  'swsh1-145': { amount: '2', name: 'Minccino', set: 'SSH', code: '145', cost: '0' },
+  'swsh1-147': { amount: '2', name: 'Cinccino', set: 'SSH', code: '147', cost: '0' },
+  'swsh5-138': {
+    amount: '3',
+    name: 'Tower of Waters',
+    set: 'BST',
+    code: '138',
+    cost: '0'
+  },
+  'swsh5-121': { amount: '2', name: 'Bruno', set: 'BST', code: '121', cost: '0' },
+  'swsh5-129': {
+    amount: '4',
+    name: 'Level Ball',
+    set: 'BST',
+    code: '129',
+    cost: '0'
+  },
+  'swsh5-128': {
+    amount: '4',
+    name: "Korrina's Focus",
+    set: 'BST',
+    code: '128',
+    cost: '0'
+  },
+  'swsh1-175': {
+    amount: '1',
+    name: 'Pokémon Catcher',
+    set: 'SSH',
+    code: '175',
+    cost: '0'
+  },
+  'swsh1-171': {
+    amount: '2',
+    name: 'Ordinary Rod',
+    set: 'SSH',
+    code: '171',
+    cost: '0'
+  },
+  'swsh1-179': {
+    amount: '4',
+    name: 'Quick Ball',
+    set: 'SSH',
+    code: '179',
+    cost: '0'
+  },
+  'swsh1-164': {
+    amount: '4',
+    name: 'Great Ball',
+    set: 'SSH',
+    code: '164',
+    cost: '0'
+  },
+  'swsh1-178': {
+    amount: '4',
+    name: "Professor's Research",
+    set: 'SSH',
+    code: '178',
+    cost: '0'
+  },
+  'swsh1-163': {
+    amount: '4',
+    name: 'Evolution Incense',
+    set: 'SSH',
+    code: '163',
+    cost: '0'
+  },
+  'swsh2-165': {
+    amount: '2',
+    name: 'Scoop Up Net',
+    set: 'RCL',
+    code: '165',
+    cost: '0'
+  },
+  'swsh6-159': {
+    amount: '4',
+    name: 'Spiral Energy',
+    set: 'CRE',
+    code: '159',
+    cost: '0'
+  },
+  'swsh3-12': { amount: '2', name: 'Dartrix', set: 'DAA', code: '12', cost: '0' },
+  'swsh6-43': { amount: '3', name: 'Inteleon', set: 'CRE', code: '43', cost: '0' },
+  'swsh1-58': { amount: '1', name: 'Inteleon', set: 'SSH', code: '58', cost: '0' },
+  'swsh3-13': { amount: '4', name: 'Decidueye', set: 'DAA', code: '13', cost: '0' },
+  'swsh6-41': { amount: '4', name: 'Sobble', set: 'CRE', code: '41', cost: '0' },
+  'swsh1-56': { amount: '4', name: 'Drizzile', set: 'SSH', code: '56', cost: '0' },
+  'swsh3-11': { amount: '4', name: 'Rowlet', set: 'DAA', code: '11', cost: '0' },
+  'swsh4-131': { amount: '1', name: 'Snorlax', set: 'VIV', code: '131', cost: '0' },
+  'swsh3-159': {
+    amount: '2',
+    name: 'Bird Keeper',
+    set: 'DAA',
+    code: '159',
+    cost: '0'
+  },
+  'swsh1-169': { amount: '4', name: 'Marnie', set: 'SSH', code: '169', cost: '0' },
+  'swsh7-152': { amount: '2', name: 'Raihan', set: 'EVS', code: '152', cost: '0' },
+  'swsh1-180': {
+    amount: '4',
+    name: 'Rare Candy',
+    set: 'SSH',
+    code: '180',
+    cost: '0'
+  },
+  'swsh5-136': {
+    amount: '1',
+    name: 'Tool Jammer',
+    set: 'BST',
+    code: '136',
+    cost: '0'
+  },
+  'swsh1-161': {
+    amount: '1',
+    name: 'Energy Search',
+    set: 'SSH',
+    code: '161',
+    cost: '0'
+  },
+  'swsh2-154': {
+    amount: '3',
+    name: "Boss's Orders",
+    set: 'RCL',
+    code: '154',
+    cost: '0'
+  },
+  'swsh2-171': {
+    amount: '4',
+    name: 'Capture Energy',
+    set: 'RCL',
+    code: '171',
+    cost: '0'
+  },
+  'swsh1-139': {
+    amount: '2',
+    name: 'Zamazenta V',
+    set: 'SSH',
+    code: '139',
+    cost: '0'
+  },
+  'swsh1-138': { amount: '2', name: 'Zacian V', set: 'SSH', code: '138', cost: '0' },
+  'swsh1-148': { amount: '2', name: 'Oranguru', set: 'SSH', code: '148', cost: '0' },
+  'swsh1-128': {
+    amount: '2',
+    name: 'Galarian Perrserker',
+    set: 'SSH',
+    code: '128',
+    cost: '0'
+  },
+  'swsh2-126': {
+    amount: '2',
+    name: 'Galarian Meowth',
+    set: 'RCL',
+    code: '126',
+    cost: '0'
+  },
+  'swsh4-121': { amount: '1', name: 'Dialga', set: 'VIV', code: '121', cost: '0' },
+  'swsh3-160': {
+    amount: '4',
+    name: 'Cape of Toughness',
+    set: 'DAA',
+    code: '160',
+    cost: '0'
+  },
+  'swsh1-174': {
+    amount: '4',
+    name: 'Pokégear 3.0',
+    set: 'SSH',
+    code: '174',
+    cost: '0'
+  },
+  'swsh1-170': {
+    amount: '4',
+    name: 'Metal Saucer',
+    set: 'SSH',
+    code: '170',
+    cost: '0'
+  },
+  'swsh1-183': { amount: '4', name: 'Switch', set: 'SSH', code: '183', cost: '0' },
+  'swsh1-156': {
+    amount: '3',
+    name: 'Air Balloon',
+    set: 'SSH',
+    code: '156',
+    cost: '0'
+  },
+  'swsh4-163': {
+    amount: '3',
+    name: 'Coating {M} Energy',
+    set: 'VIV',
+    code: '163',
+    cost: '0'
+  },
+  'swsh8-207': {
+    amount: '2',
+    name: 'Dunsparce',
+    set: 'FST',
+    code: '207',
+    cost: '0'
+  },
+  'swsh6-119': {
+    amount: '4',
+    name: 'Blissey V',
+    set: 'CRE',
+    code: '119',
+    cost: '0'
+  },
+  'swsh1-177': { amount: '4', name: 'Potion', set: 'SSH', code: '177', cost: '0' },
+  'swsh4-146': { amount: '3', name: 'Allister', set: 'VIV', code: '146', cost: '0' },
+  'swsh7-150': {
+    amount: '4',
+    name: 'Lucky Ice Pop',
+    set: 'EVS',
+    code: '150',
+    cost: '0'
+  },
+  'swsh6-148': {
+    amount: '3',
+    name: 'Path to the Peak',
+    set: 'CRE',
+    code: '148',
+    cost: '0'
+  },
+  'swsh35-66': {
+    amount: '4',
+    name: 'Suspicious Food Tin',
+    set: 'CPA',
+    code: '66',
+    cost: '0'
+  },
+  'swsh7-164': {
+    amount: '2',
+    name: "Zinnia's Resolve",
+    set: 'EVS',
+    code: '164',
+    cost: '0'
+  },
+  'swsh1-166': {
+    amount: '4',
+    name: 'Hyper Potion',
+    set: 'SSH',
+    code: '166',
+    cost: '0'
+  },
+  'swsh3-176': {
+    amount: '4',
+    name: 'Powerful {C} Energy',
+    set: 'DAA',
+    code: '176',
+    cost: '0'
+  },
+  'swsh6-158': {
+    amount: '4',
+    name: 'Lucky Energy',
+    set: 'CRE',
+    code: '158',
+    cost: '0'
+  },
+  'swsh2-49': {
+    amount: '2',
+    name: 'Inteleon V',
+    set: 'RCL',
+    code: '49',
+    cost: '0'
+  },
+  'swsh1-63': { amount: '3', name: 'Snom', set: 'SSH', code: '63', cost: '0' },
+  'swsh2-50': {
+    amount: '2',
+    name: 'Inteleon VMAX',
+    set: 'RCL',
+    code: '50',
+    cost: '0'
+  },
+  'swsh1-64': { amount: '3', name: 'Frosmoth', set: 'SSH', code: '64', cost: '0' },
+  'swsh3-37': { amount: '2', name: 'Suicune', set: 'DAA', code: '37', cost: '0' },
+  'swsh2-169': {
+    amount: '4',
+    name: 'Training Court',
+    set: 'RCL',
+    code: '169',
+    cost: '0'
+  },
+  'swsh4-160': {
+    amount: '2',
+    name: 'Telescopic Sight',
+    set: 'VIV',
+    code: '160',
+    cost: '0'
+  },
+  'swsh1-160': {
+    amount: '1',
+    name: 'Energy Retrieval',
+    set: 'SSH',
+    code: '160',
+    cost: '0'
+  },
+  'swsh2-156': {
+    amount: '2',
+    name: 'Capacious Bucket',
+    set: 'RCL',
+    code: '156',
+    cost: '0'
+  },
+  'swsh5-87': {
+    amount: '2',
+    name: 'Rapid Strike Urshifu V',
+    set: 'BST',
+    code: '87',
+    cost: '0'
+  },
+  'swsh5-83': { amount: '1', name: 'Falinks', set: 'BST', code: '83', cost: '0' },
+  'swsh5-88': {
+    amount: '2',
+    name: 'Rapid Strike Urshifu VMAX',
+    set: 'BST',
+    code: '88',
+    cost: '0'
+  },
+  'swsh6-88': { amount: '1', name: 'Passimian', set: 'CRE', code: '88', cost: '0' },
+  'swsh5-125': {
+    amount: '2',
+    name: 'Escape Rope',
+    set: 'BST',
+    code: '125',
+    cost: '0'
+  },
+  'swsh5-140': {
+    amount: '4',
+    name: 'Rapid Strike Energy',
+    set: 'BST',
+    code: '140',
+    cost: '0'
+  },
+  'swsh7-63': {
+    amount: '2',
+    name: 'Galarian Articuno',
+    set: 'EVS',
+    code: '63',
+    cost: '0'
+  },
+  'swsh6-74': {
+    amount: '2',
+    name: 'Shadow Rider Calyrex V',
+    set: 'CRE',
+    code: '74',
+    cost: '0'
+  },
+  'swsh6-64': { amount: '4', name: 'Cresselia', set: 'CRE', code: '64', cost: '0' },
+  'swsh6-75': {
+    amount: '2',
+    name: 'Shadow Rider Calyrex VMAX',
+    set: 'CRE',
+    code: '75',
+    cost: '0'
+  },
+  'swsh6-140': {
+    amount: '4',
+    name: 'Fog Crystal',
+    set: 'CRE',
+    code: '140',
+    cost: '0'
+  },
+  'swsh1-117': {
+    amount: '1',
+    name: 'Galarian Zigzagoon',
+    set: 'SSH',
+    code: '117',
+    cost: '0'
+  },
+  'swsh7-106': { amount: '1', name: 'Altaria', set: 'EVS', code: '106', cost: '0' },
+  'swsh7-76': { amount: '1', name: 'Pumpkaboo', set: 'EVS', code: '76', cost: '0' },
+  'swsh35-48': { amount: '1', name: 'Swablu', set: 'CPA', code: '48', cost: '0' },
+  'swsh2-8': { amount: '3', name: 'Lombre', set: 'RCL', code: '8', cost: '0' },
+  'swsh7-34': { amount: '3', name: 'Ludicolo', set: 'EVS', code: '34', cost: '0' },
+  'swsh7-31': { amount: '2', name: 'Suicune V', set: 'EVS', code: '31', cost: '0' },
+  'swsh7-32': { amount: '4', name: 'Lotad', set: 'EVS', code: '32', cost: '0' },
+  'swsh6-45': {
+    amount: '1',
+    name: 'Ice Rider Calyrex V',
+    set: 'CRE',
+    code: '45',
+    cost: '0'
+  },
+  'swsh6-46': {
+    amount: '1',
+    name: 'Ice Rider Calyrex VMAX',
+    set: 'CRE',
+    code: '46',
+    cost: '0'
+  },
+  'swsh6-146': { amount: '3', name: 'Melony', set: 'CRE', code: '146', cost: '0' }
+}
