@@ -30,6 +30,23 @@ const cards = {
   'cel25-23': sshResearch,
   'swsh9-147': sshResearch,
 
+  // more minor CPA reprints
+  // skip non-starter cards
+  'swsh35-52': {
+    target: 'swsh1-164',
+    name: 'Great Ball SSH 164',
+  },
+
+  'swsh35-54': {
+    target: 'swsh1-166',
+    name: 'Hyper Potion SSH 166',
+  },
+
+  'swsh35-61': {
+    target: 'swsh1-164',
+    name: 'Potion SSH 177',
+  },
+
   // TODO: BW energy search is a common, try to set up another redirect
 };
 
