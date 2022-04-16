@@ -2,6 +2,7 @@ import ptcgoParser from '@sky-pose-rick/ptcgl-parser';
 import craftingCosts from './craftingCosts.js';
 import sellingCosts from './sellingCosts.js';
 import starterCards from './starterCards2022';
+import redirects from './redirects.js';
 
 function determinePrice(card, data, priceList) {
   if (card.isEnergy) {
@@ -24,20 +25,29 @@ function determinePrice(card, data, priceList) {
 }
 
 async function priceCard(card, priceList) {
+  const newCard = { ...card };
+  newCard.toCraft = newCard.amount;
+  newCard.costPerCopy = 0;
+  newCard.totalCost = 0;
+
+  // find cheaper/already owned alternatives
+  const redirectCard = redirects.cards[newCard.ptcgoio.id];
+  if (redirectCard) {
+    newCard.redirect = redirectCard;
+    newCard.ptcgoio.id = redirectCard.target;
+  }
+
   // don't need to hit api for starter cards
-  if (starterCards.cards[card.ptcgoio.id]) {
-    const newCard = { ...card };
-    const starterCard = starterCards.cards[card.ptcgoio.id];
-
+  const starterCard = starterCards.cards[card.ptcgoio.id];
+  if (starterCard) {
     newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
-
     newCard.costPerCopy = starterCard.cost;
     newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
 
     return newCard;
   }
 
-  const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${card.ptcgoio.id}`;
+  const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${newCard.ptcgoio.id}`;
 
   let response;
 
@@ -47,19 +57,12 @@ async function priceCard(card, priceList) {
     console.error(e);
   }
 
-  const newCard = { ...card };
-  newCard.toCraft = newCard.amount;
-
   // console.log(data);
   if (response.status === 429) {
     console.error('Too many requests to pokemontcg.io API (limit is 60/minute)');
-    newCard.costPerCopy = 0;
-    newCard.totalCost = 0;
     newCard.notFound = true;
   } else if (response.status === 404) {
     console.error('Card not found:', card);
-    newCard.costPerCopy = 0;
-    newCard.totalCost = 0;
     newCard.notFound = true;
   } else {
     const data = await response.json();

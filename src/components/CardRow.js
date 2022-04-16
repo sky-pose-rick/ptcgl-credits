@@ -63,6 +63,7 @@ function CardRow(props) {
         {card.isEnergy
           ? `Basic ${card.name} Energy`
           : `${card.name} ${card.set} ${card.code}`}
+        {card.redirect && <abbr title={card.redirect.name}>*</abbr>}
       </div>
       <div className="total">
         {totalCost}
