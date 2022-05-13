@@ -8,19 +8,19 @@ import Pricer from './components/Pricer';
 // eg. http://localhost:3000/#/ptcgl-credits/sell
 function App() {
   return (
-    <HashRouter basename="/ptcgl-credits">
+    <HashRouter>
       <div className="App">
         <Routes>
           <Route
-            path="/merger"
+            path="/ptcgl-credits/merger"
             element={<div>TODO</div>}
           />
           <Route
-            path="/sell"
+            path="/ptcgl-credits/sell"
             element={<Pricer selling />}
           />
           <Route
-            path="/"
+            path="/ptcgl-credits"
             element={<Pricer />}
           />
           <Route
