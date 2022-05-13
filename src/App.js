@@ -1,24 +1,26 @@
 import React from 'react';
 import {
-  BrowserRouter, Route, Routes,
+  HashRouter, Route, Routes,
 } from 'react-router-dom';
 import Pricer from './components/Pricer';
 
+// use hash router locally with '/#/' before the normal url
+// eg. http://localhost:3000/#/ptcgl-credits/sell
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/ptcgl-credits">
       <div className="App">
         <Routes>
           <Route
-            path="/ptcgl-credits/merger"
+            path="/merger"
             element={<div>TODO</div>}
           />
           <Route
-            path="/ptcgl-credits/sell"
+            path="/sell"
             element={<Pricer selling />}
           />
           <Route
-            path="/ptcgl-credits"
+            path="/"
             element={<Pricer />}
           />
           <Route
@@ -27,7 +29,7 @@ function App() {
           />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
