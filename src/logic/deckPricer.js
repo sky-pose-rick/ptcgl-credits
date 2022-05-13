@@ -31,26 +31,30 @@ async function priceCard(card, isSelling) {
   newCard.costPerCopy = 0;
   newCard.totalCost = 0;
 
-  // insert logic for checking if parser failed to get a ptcgio id
+  // if there is no ptcgoio code, skip this step
+  if (!card.ptcgoio.missing) {
+    // find cheaper/already owned alternatives when not checking sell price
+    const redirectCard = redirects.cards[newCard.ptcgoio.id];
+    if (!isSelling && redirectCard) {
+      newCard.redirect = redirectCard;
+      newCard.ptcgoio.id = redirectCard.target;
+    }
 
-  // find cheaper/already owned alternatives when not checking sell price
-  const redirectCard = redirects.cards[newCard.ptcgoio.id];
-  if (!isSelling && redirectCard) {
-    newCard.redirect = redirectCard;
-    newCard.ptcgoio.id = redirectCard.target;
+    // don't need to hit api for starter cards unless it checking sell price
+    const starterCard = starterCards.cards[card.ptcgoio.id];
+    if (!isSelling && starterCard) {
+      newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
+      newCard.costPerCopy = starterCard.cost;
+      newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
+
+      return newCard;
+    }
   }
 
-  // don't need to hit api for starter cards unless it checking sell price
-  const starterCard = starterCards.cards[card.ptcgoio.id];
-  if (!isSelling && starterCard) {
-    newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
-    newCard.costPerCopy = starterCard.cost;
-    newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
-
-    return newCard;
-  }
-
-  const ptcgioURL = `https://api.pokemontcg.io/v2/cards/${newCard.ptcgoio.id}`;
+  // if there is no ptcgoio code, search with set and number instead
+  const ptcgioURL = card.ptcgoio.missing
+    ? `https://api.pokemontcg.io/v2/cards?q=set.ptcgoCode:${card.set} number:${card.code}`
+    : `https://api.pokemontcg.io/v2/cards/${newCard.ptcgoio.id}`;
 
   let response;
 
@@ -69,8 +73,19 @@ async function priceCard(card, isSelling) {
     newCard.notFound = true;
   } else {
     const data = await response.json();
-    newCard.costPerCopy = determinePrice(newCard, data.data, priceList);
-    newCard.totalCost = newCard.costPerCopy * newCard.amount;
+    console.log(data);
+    if (card.ptcgoio.missing) {
+      if (data.count === 0) {
+        console.error('Card not found:', card);
+        newCard.notFound = true;
+      } else {
+        newCard.costPerCopy = determinePrice(newCard, data.data[0], priceList);
+        newCard.totalCost = newCard.costPerCopy * newCard.amount;
+      }
+    } else {
+      newCard.costPerCopy = determinePrice(newCard, data.data, priceList);
+      newCard.totalCost = newCard.costPerCopy * newCard.amount;
+    }
   }
 
   return newCard;
