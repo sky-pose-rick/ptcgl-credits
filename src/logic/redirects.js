@@ -47,6 +47,11 @@ const cards = {
     name: 'Potion SSH 177',
   },
 
+  'swsh45-44': {
+    target: 'swsh3-104',
+    name: 'Crobat V',
+  },
+
   // TODO: BW energy search is a common, try to set up another redirect
 };
 
