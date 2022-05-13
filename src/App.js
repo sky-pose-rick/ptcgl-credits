@@ -12,11 +12,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route
-            path="/ptcgl-credits/merger"
+            path="/merger"
             element={<div>TODO</div>}
           />
           <Route
-            path="/ptcgl-credits/sell"
+            path="/sell"
             element={<Pricer selling />}
           />
           <Route
