@@ -11,6 +11,7 @@ function Pricer() {
   const [cardCount, setCardCount] = useState(0);
   const [listsAccepted, setListsAccepted] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [usdRate, setUSDRate] = useState(1600);
 
   const onSubmit = (e, priceDeck) => {
     e.preventDefault();
@@ -87,17 +88,30 @@ function Pricer() {
               <div className="total">{total}</div>
             </div>
             <div className="CardRow">
-              <div className="grid-filler">Total (USD, $1.00 = 1600 Credits)</div>
+              <div className="grid-filler">
+                Total (USD, $1.00 =
+                {' '}
+                <input
+                  type="number"
+                  value={usdRate}
+                  onChange={(e) => {
+                    setUSDRate(e.target.value);
+                  }}
+                  className="rate-input"
+                />
+                {' '}
+                Credits)
+              </div>
               <div className="total">
                 $
-                {(total / 1600).toFixed(2)}
+                {(total / usdRate).toFixed(2)}
               </div>
             </div>
           </div>
         </div>
         )}
       <footer>
-        Card searching provided by
+        Last updated May 13, 2022. Card searching provided by
         {' '}
         <a href="https://pokemontcg.io/">pokemontcg.io</a>
       </footer>
