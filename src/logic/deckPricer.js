@@ -31,6 +31,10 @@ async function priceCard(card, isSelling) {
   newCard.costPerCopy = 0;
   newCard.totalCost = 0;
 
+  if (card.isEnergy) {
+    return newCard;
+  }
+
   // if there is no ptcgoio code, skip this step
   if (!card.ptcgoio.missing) {
     // find cheaper/already owned alternatives when not checking sell price
@@ -73,7 +77,6 @@ async function priceCard(card, isSelling) {
     newCard.notFound = true;
   } else {
     const data = await response.json();
-    console.log(data);
     if (card.ptcgoio.missing) {
       if (data.count === 0) {
         console.error('Card not found:', card);
