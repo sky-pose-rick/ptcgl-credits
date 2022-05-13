@@ -49,7 +49,7 @@ const cards = {
 
   'swsh45-44': {
     target: 'swsh3-104',
-    name: 'Crobat V',
+    name: 'Crobat V DAA 104',
   },
 
   // TODO: BW energy search is a common, try to set up another redirect

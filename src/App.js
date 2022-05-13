@@ -14,6 +14,14 @@ function App() {
             element={<div>TODO</div>}
           />
           <Route
+            path="/ptcgl-credits/sell"
+            element={<Pricer selling />}
+          />
+          <Route
+            path="/ptcgl-credits"
+            element={<Pricer />}
+          />
+          <Route
             path="*"
             element={<Pricer />}
           />

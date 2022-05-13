@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const priceList = [
+const priceListBuy = [
   0,
   40,
   100,
@@ -11,16 +11,33 @@ const priceList = [
   750,
   900,
   1025,
+  1250,
   1600,
   2000,
 ];
 
+const priceListSell = [
+  0,
+  10,
+  20,
+  100,
+  125,
+  200,
+  250,
+  300,
+  375,
+  600,
+  900,
+  1000,
+];
+
 function CardRow(props) {
-  const { card, adjustGrandTotal } = props;
+  const { card, adjustGrandTotal, selling } = props;
   const [costPerCopy, setCostPerCopy] = useState(card.costPerCopy);
   const [amount, setAmount] = useState(card.toCraft);
   const [hasError, setHasError] = useState(card.notFound);
   const totalCost = costPerCopy * amount;
+  const priceList = selling ? priceListSell : priceListBuy;
 
   const onChangeCost = (e) => {
     const newCost = e.target.value;

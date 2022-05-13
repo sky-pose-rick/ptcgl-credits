@@ -24,22 +24,25 @@ function determinePrice(card, data, priceList) {
   return priceList.rarityCosts[data.rarity];
 }
 
-async function priceCard(card, priceList) {
+async function priceCard(card, isSelling) {
+  const priceList = isSelling ? sellingCosts : craftingCosts;
   const newCard = { ...card };
   newCard.toCraft = newCard.amount;
   newCard.costPerCopy = 0;
   newCard.totalCost = 0;
 
-  // find cheaper/already owned alternatives
+  // insert logic for checking if parser failed to get a ptcgio id
+
+  // find cheaper/already owned alternatives when not checking sell price
   const redirectCard = redirects.cards[newCard.ptcgoio.id];
-  if (redirectCard) {
+  if (!isSelling && redirectCard) {
     newCard.redirect = redirectCard;
     newCard.ptcgoio.id = redirectCard.target;
   }
 
-  // don't need to hit api for starter cards
+  // don't need to hit api for starter cards unless it checking sell price
   const starterCard = starterCards.cards[card.ptcgoio.id];
-  if (starterCard) {
+  if (!isSelling && starterCard) {
     newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
     newCard.costPerCopy = starterCard.cost;
     newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
@@ -73,7 +76,7 @@ async function priceCard(card, priceList) {
   return newCard;
 }
 
-async function priceDeckGeneric(importText, priceList) {
+async function priceDeckGeneric(importText, isSelling) {
   const parsed = ptcgoParser.parse(importText);
 
   // const promiseArray = [];
@@ -83,7 +86,7 @@ async function priceDeckGeneric(importText, priceList) {
 
   // process cards one by one
   parsed.cards.forEach((card) => {
-    promiseArray.push(priceCard(card, priceList));
+    promiseArray.push(priceCard(card, isSelling));
   });
 
   const dataArray = await Promise.all(promiseArray);
@@ -101,11 +104,11 @@ async function priceDeckGeneric(importText, priceList) {
 }
 
 function priceDeckSell(importText) {
-  return priceDeckGeneric(importText, sellingCosts);
+  return priceDeckGeneric(importText, true);
 }
 
 function priceDeckBuy(importText) {
-  return priceDeckGeneric(importText, craftingCosts);
+  return priceDeckGeneric(importText, false);
 }
 
 function priceDeck(importText) {

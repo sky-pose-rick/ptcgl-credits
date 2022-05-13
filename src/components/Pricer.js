@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import {
-  Route, Routes,
-} from 'react-router-dom';
 import CardRow from './CardRow';
 import deckPricer from '../logic/deckPricer';
 
-function Pricer() {
+function Pricer(props) {
+  const { selling } = props;
   const [cards, setCards] = useState({});
   const [total, setTotal] = useState(0);
   const [cardCount, setCardCount] = useState(0);
@@ -32,11 +32,11 @@ function Pricer() {
   };
 
   const onRequestCraft = (e) => {
-    onSubmit(e, deckPricer.priceDeckBuy);
-  };
-
-  const onRequestSell = (e) => {
-    onSubmit(e, deckPricer.priceDeckSell);
+    if (selling) {
+      onSubmit(e, deckPricer.priceDeckSell);
+    } else {
+      onSubmit(e, deckPricer.priceDeckBuy);
+    }
   };
 
   const adjustGrandTotal = (diff) => {
@@ -48,20 +48,9 @@ function Pricer() {
       <h1>PTCGL Deck Pricer</h1>
       <form>
         <textarea placeholder="Export your decklist here." rows="10" cols="30" />
-        <Routes>
-          <Route
-            path="/ptcgl-credits/sell"
-            element={
-              <button type="submit" disabled={loading} onClick={onRequestSell}>{ loading ? 'Loading...' : 'Sell your deck!'}</button>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <button type="submit" disabled={loading} onClick={onRequestCraft}>{ loading ? 'Loading...' : 'Price your deck!'}</button>
-            }
-          />
-        </Routes>
+        <button type="submit" disabled={loading} onClick={onRequestCraft}>
+          {loading ? 'Loading...' : `${selling ? 'Sell' : 'Price'} your deck!`}
+        </button>
       </form>
       {listsAccepted > 0
         && (
@@ -74,14 +63,18 @@ function Pricer() {
           <div className="price-table">
             <div className="CardRow table-header">
               <div className="num-list">Amount</div>
-              <div className="num-craft">Amount to Craft</div>
-              <div className="cost">Cost Per Card</div>
+              <div className="num-craft">{`Amount ${selling ? 'dusted' : 'to Craft'}`}</div>
+              <div className="cost">{`${selling ? 'Credits' : 'Cost'} per Card`}</div>
               <div className="card-name">Card Name</div>
-              <div className="total">Total Card Cost</div>
+              <div className="total">{`Total Card ${selling ? 'Credits' : 'Cost'}`}</div>
             </div>
             {cards.map((card, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <CardRow key={`${listsAccepted}-${index}`} card={card} adjustGrandTotal={adjustGrandTotal} />
+              <CardRow
+                key={`${listsAccepted}-${index}`}
+                card={card}
+                adjustGrandTotal={adjustGrandTotal}
+                selling={selling}
+              />
             ))}
             <div className="CardRow">
               <div className="grid-filler">Total (Credits)</div>
