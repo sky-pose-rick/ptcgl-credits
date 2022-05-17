@@ -2,6 +2,7 @@ import React from 'react';
 import {
   HashRouter, Route, Routes, Link,
 } from 'react-router-dom';
+import Normalizer from './Normalizer';
 import Pricer from './Pricer';
 
 // use hash router locally with '/#/' before the normal url
@@ -26,7 +27,7 @@ function Frame() {
           />
           <Route
             path="/normalizer"
-            element={<div>TODO</div>}
+            element={<Normalizer />}
           />
           <Route
             path="/sell"
