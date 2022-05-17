@@ -45,7 +45,6 @@ function Pricer(props) {
 
   return (
     <div className="Pricer">
-      <h1>PTCGL Deck Pricer</h1>
       <form>
         <textarea placeholder="Export your decklist here." rows="10" cols="30" />
         <button type="submit" disabled={loading} onClick={onRequestCraft}>
@@ -103,11 +102,6 @@ function Pricer(props) {
           </div>
         </div>
         )}
-      <footer>
-        Last updated May 13, 2022. Card searching provided by
-        {' '}
-        <a href="https://pokemontcg.io/">pokemontcg.io</a>
-      </footer>
     </div>
   );
 }
