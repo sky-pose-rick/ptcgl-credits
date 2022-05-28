@@ -9,19 +9,22 @@ function determinePrice(card, data, priceList) {
     return 0;
   }
 
-  // promos all have promo rarity
-  if (data.rarity === 'Promo') {
-    let maxCost = 400;
-    data.subtypes.forEach((subtype) => {
-      const cost = priceList.subtypeCosts[subtype];
-      if (cost > maxCost) {
-        maxCost = cost;
-      }
-    });
-    return maxCost;
-  }
+  if (priceList.rarityCosts[data.rarity]) {
+    // promos all have promo rarity
+    if (data.rarity === 'Promo') {
+      let maxCost = 400;
+      data.subtypes.forEach((subtype) => {
+        const cost = priceList.subtypeCosts[subtype];
+        if (cost > maxCost) {
+          maxCost = cost;
+        }
+      });
+      return maxCost;
+    }
 
-  return priceList.rarityCosts[data.rarity];
+    return priceList.rarityCosts[data.rarity];
+  }
+  return -1;
 }
 
 async function priceCard(card, isSelling) {
@@ -68,13 +71,12 @@ async function priceCard(card, isSelling) {
     console.error(e);
   }
 
+  let cost = -1;
   // console.log(data);
   if (response.status === 429) {
     console.error('Too many requests to pokemontcg.io API (limit is 60/minute)');
-    newCard.notFound = true;
   } else if (response.status === 404) {
     console.error('Card not found:', card);
-    newCard.notFound = true;
   } else {
     const data = await response.json();
     if (card.ptcgoio.missing) {
@@ -82,13 +84,20 @@ async function priceCard(card, isSelling) {
         console.error('Card not found:', card);
         newCard.notFound = true;
       } else {
-        newCard.costPerCopy = determinePrice(newCard, data.data[0], priceList);
-        newCard.totalCost = newCard.costPerCopy * newCard.amount;
+        cost = determinePrice(newCard, data.data[0], priceList);
       }
     } else {
-      newCard.costPerCopy = determinePrice(newCard, data.data, priceList);
-      newCard.totalCost = newCard.costPerCopy * newCard.amount;
+      cost = determinePrice(newCard, data.data, priceList);
     }
+  }
+
+  if (cost < 0) {
+    newCard.notFound = true;
+    newCard.costPerCopy = 0;
+    newCard.totalCost = 0;
+  } else {
+    newCard.costPerCopy = cost;
+    newCard.totalCost = cost * newCard.amount;
   }
 
   return newCard;
