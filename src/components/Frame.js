@@ -39,7 +39,7 @@ function Frame() {
           />
         </Routes>
         <footer>
-          Last updated May 17, 2022. Card searching provided by
+          Last updated May 28, 2022. Card searching provided by
           {' '}
           <a href="https://pokemontcg.io/">pokemontcg.io</a>
         </footer>

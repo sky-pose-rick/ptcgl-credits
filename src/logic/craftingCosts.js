@@ -27,7 +27,7 @@ const rarityCosts = {
   'Uncommon': 100,
   'V': 750,
   'VM': 1025,
-  'Radiant': 600, // a guess
+  'Radiant Rare': 600,
 };
 
 const subtypeCosts = {
