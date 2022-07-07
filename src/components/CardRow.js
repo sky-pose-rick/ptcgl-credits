@@ -32,25 +32,22 @@ const priceListSell = [
 ];
 
 function CardRow(props) {
-  const { card, adjustGrandTotal, selling } = props;
-  const [costPerCopy, setCostPerCopy] = useState(card.costPerCopy);
-  const [amount, setAmount] = useState(card.toCraft);
+  const {
+    card, updateCardCost, updateCardAmount, selling,
+  } = props;
   const [hasError, setHasError] = useState(card.notFound);
-  const totalCost = costPerCopy * amount;
   const priceList = selling ? priceListSell : priceListBuy;
 
   const onChangeCost = (e) => {
     const newCost = e.target.value;
-    adjustGrandTotal((newCost - costPerCopy) * amount);
-    setCostPerCopy(newCost);
+    updateCardCost(newCost);
     setHasError(false);
   };
 
   const onChangeAmount = (e) => {
     const newAmount = e.target.value;
     if (newAmount % 1 === 0 && newAmount >= 0 && newAmount < 60) {
-      adjustGrandTotal((newAmount - amount) * costPerCopy);
-      setAmount(newAmount);
+      updateCardAmount(newAmount);
     }
   };
 
@@ -60,10 +57,10 @@ function CardRow(props) {
         {card.amount}
       </div>
       <div className="num-craft">
-        <input type="number" value={amount} onChange={onChangeAmount} min="0" max="59" />
+        <input type="number" value={card.toCraft} onChange={onChangeAmount} min="0" max="59" />
       </div>
       <div className="cost">
-        <select defaultValue={costPerCopy} onChange={onChangeCost}>
+        <select value={card.costPerCopy} onChange={onChangeCost}>
           {
             priceList.map((price) => (
               <option
@@ -83,7 +80,7 @@ function CardRow(props) {
         {card.redirect && <abbr title={card.redirect.name}>*</abbr>}
       </div>
       <div className="total">
-        {totalCost}
+        {card.totalCost}
       </div>
     </div>
   );

@@ -39,9 +39,39 @@ function Pricer(props) {
     }
   };
 
-  const adjustGrandTotal = (diff) => {
-    setTotal((prev) => prev + diff);
+  const updateDeck = (index, updatedCard) => {
+    setCards((state) => {
+      let sum = 0;
+      const newDeck = state.map((card, i) => {
+        // console.log(sum);
+        if (i === index) {
+          sum += updatedCard.totalCost;
+          return updatedCard;
+        }
+        sum += card.totalCost;
+        return card;
+      });
+      console.log('total', sum);
+      setTotal(sum);
+      return newDeck;
+    });
   };
+
+  const updateCardAmount = (index, value) => {
+    const updatedCard = { ...cards[index] };
+    updatedCard.toCraft = value;
+    updatedCard.totalCost = updatedCard.toCraft * updatedCard.costPerCopy;
+    updateDeck(index, updatedCard);
+  };
+
+  const updateCardCost = (index, value) => {
+    const updatedCard = { ...cards[index] };
+    updatedCard.costPerCopy = value;
+    updatedCard.totalCost = updatedCard.toCraft * updatedCard.costPerCopy;
+    updateDeck(index, updatedCard);
+  };
+
+  console.log('Render total', total);
 
   return (
     <div className="Pricer">
@@ -71,7 +101,12 @@ function Pricer(props) {
               <CardRow
                 key={`${listsAccepted}-${index}`}
                 card={card}
-                adjustGrandTotal={adjustGrandTotal}
+                updateCardAmount={(value) => {
+                  updateCardAmount(index, value);
+                }}
+                updateCardCost={(value) => {
+                  updateCardCost(index, value);
+                }}
                 selling={selling}
               />
             ))}
