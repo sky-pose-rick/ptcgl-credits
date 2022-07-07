@@ -6,7 +6,7 @@ import deckPricer from '../logic/deckPricer';
 
 function Pricer(props) {
   const { selling } = props;
-  const [cards, setCards] = useState({});
+  const [cards, setCards] = useState([]);
   const [total, setTotal] = useState(0);
   const [cardCount, setCardCount] = useState(0);
   const [listsAccepted, setListsAccepted] = useState(0);
@@ -39,20 +39,23 @@ function Pricer(props) {
     }
   };
 
+  const updateTotal = (deck) => {
+    let sum = 0;
+    deck.forEach((card) => {
+      sum += card.totalCost;
+    });
+    setTotal(sum);
+  };
+
   const updateDeck = (index, updatedCard) => {
     setCards((state) => {
-      let sum = 0;
       const newDeck = state.map((card, i) => {
-        // console.log(sum);
         if (i === index) {
-          sum += updatedCard.totalCost;
           return updatedCard;
         }
-        sum += card.totalCost;
         return card;
       });
-      console.log('total', sum);
-      setTotal(sum);
+      updateTotal(newDeck);
       return newDeck;
     });
   };
@@ -71,7 +74,14 @@ function Pricer(props) {
     updateDeck(index, updatedCard);
   };
 
-  console.log('Render total', total);
+  // update summary on re-render
+  let summaryString = '';
+  cards.forEach((card) => {
+    if (card.totalCost > 0) {
+      summaryString += `${card.toCraft}x ${card.name} ${card.set}${card.code} = ${card.totalCost}\n`;
+    }
+  });
+  summaryString += `Total: ${total} Credits`;
 
   return (
     <div className="Pricer">
@@ -134,6 +144,10 @@ function Pricer(props) {
                 {(total / usdRate).toFixed(2)}
               </div>
             </div>
+          </div>
+          <div className="summary">
+            <div className="card-count">Summary</div>
+            <textarea className="display-box" value={summaryString} readOnly rows="10" cols="30" />
           </div>
         </div>
         )}

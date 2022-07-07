@@ -43,7 +43,7 @@ function Normalizer() {
             {' '}
             {cardCount}
           </div>
-          <textarea key={`textarea-${listsAccepted}`} defaultValue={decklist} rows="10" cols="30" />
+          <textarea className="display-box" key={`textarea-${listsAccepted}`} defaultValue={decklist} rows="10" cols="30" />
         </div>
         )}
     </div>
