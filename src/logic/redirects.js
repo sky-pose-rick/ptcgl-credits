@@ -52,6 +52,17 @@ const cards = {
     name: 'Crobat V DAA 104',
   },
 
+  // TODO: PGO is not yet detected by the parser
+  'pgo-69': {
+    target: 'swsh1-180',
+    name: 'Rare Candy SSH 180',
+  },
+
+  'swsh45-30': {
+    target: 'swsh1-64',
+    name: 'Frosmoth SSH 64',
+  },
+
   // TODO: BW energy search is a common, try to set up another redirect
 };
 
