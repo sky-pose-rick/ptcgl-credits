@@ -44,6 +44,14 @@ function Normalizer() {
             {cardCount}
           </div>
           <textarea className="display-box" key={`textarea-${listsAccepted}`} defaultValue={decklist} rows="10" cols="30" />
+          <button
+            type="button"
+            onClick={() => {
+              navigator.clipboard.writeText(decklist);
+            }}
+          >
+            Copy to clipboard
+          </button>
         </div>
         )}
     </div>
