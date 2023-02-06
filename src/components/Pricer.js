@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import CardRow from './CardRow';
 import deckPricer from '../logic/deckPricer';
+import ownedCards from '../logic/ownedCards';
 
 function Pricer(props) {
   const { selling } = props;
@@ -22,8 +23,11 @@ function Pricer(props) {
 
     priceDeck(textarea.value).then((result) => {
       if (result.cards.length > 0) {
-        setCards(result.cards);
-        setTotal(result.total);
+        const updatedCards = ownedCards.adjustCraftingWithOwned(result.cards);
+        setCards(updatedCards);
+        // recompute total
+        const updatedTotal = updatedCards.reduce((sum, card) => sum + card.totalCost, 0);
+        setTotal(updatedTotal);
         setCardCount(result.cardCount);
         setListsAccepted(listsAccepted + 1);
       }
@@ -145,6 +149,16 @@ function Pricer(props) {
               </div>
             </div>
           </div>
+          {!selling && (
+          <button
+            type="button"
+            onClick={() => {
+              ownedCards.updateOwnedCounts(cards);
+            }}
+          >
+            Save Owned Cards
+          </button>
+          )}
           <div className="summary">
             <div className="card-count">Summary</div>
             <textarea className="display-box" value={summaryString} readOnly rows="10" cols="30" />

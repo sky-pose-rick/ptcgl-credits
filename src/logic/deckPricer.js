@@ -84,6 +84,7 @@ async function priceCard(card, isSelling) {
         console.error('Card not found:', card);
         newCard.notFound = true;
       } else {
+        newCard.ptcgoio.id = data.data[0].id;
         cost = determinePrice(newCard, data.data[0], priceList);
       }
     } else {
