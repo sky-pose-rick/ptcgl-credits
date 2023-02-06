@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ptcgl-credits/static/css/main.0384251c.css",
-    "main.js": "/ptcgl-credits/static/js/main.ba21fc58.js",
+    "main.js": "/ptcgl-credits/static/js/main.c1103620.js",
     "index.html": "/ptcgl-credits/index.html",
     "main.0384251c.css.map": "/ptcgl-credits/static/css/main.0384251c.css.map",
-    "main.ba21fc58.js.map": "/ptcgl-credits/static/js/main.ba21fc58.js.map"
+    "main.c1103620.js.map": "/ptcgl-credits/static/js/main.c1103620.js.map"
   },
   "entrypoints": [
     "static/css/main.0384251c.css",
-    "static/js/main.ba21fc58.js"
+    "static/js/main.c1103620.js"
   ]
 }
