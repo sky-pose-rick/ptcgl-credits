@@ -18,16 +18,17 @@ const rarityCosts = {
   'Rare Holo VSTAR': 375,
   'Rare Prime': 1000,
   'Rare Prism Star': 150,
-  'Rare Rainbow': 900, // uncertain
+  'Rare Rainbow': 800, // uncertain
   'Rare Secret': 1000,
   'Rare Shining': 150,
   'Rare Shiny': 150,
-  'Rare Shiny GX': 300, // uncertain
+  'Rare Shiny GX': 450, // uncertain
   'Rare Ultra': 600,
   'Uncommon': 20,
   'V': 250,
   'VM': 375,
   'Radiant Rare': 150,
+  'ex': 150,
 };
 
 const subtypeCosts = {
@@ -38,6 +39,7 @@ const subtypeCosts = {
   'VMAX': 375,
   'VSTAR': 375,
   'V-UNION': 250,
+  'ex': 150,
 };
 
 export default { rarityCosts, subtypeCosts };

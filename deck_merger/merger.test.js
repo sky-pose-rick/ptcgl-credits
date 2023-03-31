@@ -23,7 +23,7 @@ describe('object output', () => {
     const merged = deckMerger.mergeLists(lists);
     // console.log(deckParser.parseRow('3 Professor\'s Research SSH 178'));
     // eslint-disable-next-line dot-notation
-    const research = merged['swsh1-178'];
+    const research = merged['SSH-178'];
     expect(research.amount).toEqual('4');
     expect(research.set).toEqual('SSH');
     expect(research.code).toEqual('178');

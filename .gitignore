@@ -31,3 +31,6 @@ yarn-error.log*
 
 #subproject
 /deck_merger/node_modules
+
+#local settings
+.vscode
