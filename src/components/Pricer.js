@@ -12,6 +12,7 @@ function Pricer(props) {
   const [cardCount, setCardCount] = useState(0);
   const [listsAccepted, setListsAccepted] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [savingCountsState, setSavingCountsState] = useState(0);
   const [usdRate, setUSDRate] = useState(1600);
 
   const onSubmit = (e, priceDeck) => {
@@ -150,14 +151,24 @@ function Pricer(props) {
             </div>
           </div>
           {!selling && (
-          <button
-            type="button"
-            onClick={() => {
-              ownedCards.updateOwnedCounts(cards);
-            }}
-          >
-            Save Owned Cards
-          </button>
+          <div>
+            <button
+              type="button"
+              disabled={savingCountsState === 1}
+              onClick={() => {
+                ownedCards.updateOwnedCounts(cards);
+                setSavingCountsState(2);
+                setInterval(() => {
+                  setSavingCountsState(0);
+                }, 2000);
+              }}
+            >
+              Save Owned Cards
+            </button>
+            {savingCountsState === 2 && (
+              <span style={{ color: 'green' }}>Saved.</span>
+            )}
+          </div>
           )}
           <div className="summary">
             <div className="card-count">Summary</div>
