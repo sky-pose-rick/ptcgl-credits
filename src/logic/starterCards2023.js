@@ -75,10 +75,10 @@ const cards = {
     amount: '1', set: 'ASR', code: '68', cost: 425, name: 'Diancie', supertype: 'Pokémon',
   },
   'SVI-125': {
-    amount: '4', set: 'SVI', code: '125', cost: -1, name: 'Koraidon ex', supertype: 'Pokémon',
+    amount: '4', set: 'SVI', code: '125', cost: 600, name: 'Koraidon ex', supertype: 'Pokémon',
   },
   'SVI-123': {
-    amount: '1', set: 'SVI', code: '123', cost: -1, name: 'Great Tusk ex', supertype: 'Pokémon',
+    amount: '1', set: 'SVI', code: '123', cost: 600, name: 'Great Tusk ex', supertype: 'Pokémon',
   },
   'ASR-156': {
     amount: '4', set: 'ASR', code: '156', cost: 100, name: 'Trekking Shoes', supertype: 'Trainer',
@@ -321,7 +321,7 @@ const cards = {
     amount: '2', set: 'PGO', code: '8', cost: 40, name: 'Charmander', supertype: 'Pokémon',
   },
   'SVI-32': {
-    amount: '3', set: 'SVI', code: '32', cost: -1, name: 'Arcanine ex', supertype: 'Pokémon',
+    amount: '3', set: 'SVI', code: '32', cost: 600, name: 'Arcanine ex', supertype: 'Pokémon',
   },
   'BRS-21': {
     amount: '1', set: 'BRS', code: '21', cost: 425, name: 'Moltres', supertype: 'Pokémon',

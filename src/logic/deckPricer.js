@@ -62,10 +62,8 @@ async function priceCard(card, isSelling) {
   */
 
   // don't need to hit api for starter cards unless it checking sell price
-  console.log(card);
   const starterKey = `${card.set}-${card.code}`;
   const starterCard = starterCards.cards[starterKey];
-  console.log(starterKey);
   if (!isSelling && starterCard) {
     newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
     newCard.costPerCopy = starterCard.cost;

@@ -29,6 +29,7 @@ const rarityCosts = {
   'VM': 375,
   'Radiant Rare': 150,
   'ex': 150,
+  'Double Rare': 600,
 };
 
 const subtypeCosts = {
