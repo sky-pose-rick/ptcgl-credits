@@ -11,6 +11,18 @@ function determinePrice(card, data, priceList) {
   }
 
   if (priceList.rarityCosts[data.rarity]) {
+    // SV has new rarity classificatins, ex falls under double rare
+    if (data.rarity === 'Double Rare') {
+      let maxCost = 400;
+      data.subtypes.forEach((subtype) => {
+        const cost = priceList.subtypeCosts[subtype];
+        if (cost > maxCost) {
+          maxCost = cost;
+        }
+      });
+      return maxCost;
+    }
+
     // promos all have promo rarity
     if (data.rarity === 'Promo') {
       let maxCost = 400;
