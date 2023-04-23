@@ -1,24 +1,8 @@
 import ptcgoParser from '@sky-pose-rick/ptcgl-parser';
 import redirects from './redirects.js';
+import sets from './sets.js';
 
-const promoSets = {
-  // the correct ptcgo codes
-  /*
-  'PR-BLW': 'bwp-BW',
-  'PR-XY': 'xyp-XY',
-  'PR-SM': 'smp-SM',
-  'PR-SW': 'swshp-SWSH',
-  */
-
-  //  limitless's codes for promo sets
-  BWP: 'PR-BLW',
-  XYP: 'PR-XY',
-  SMP: 'PR-SM',
-  SSP: 'PR-SW',
-
-  // play.limitless's promo sets
-  'PR-SWSH': 'PR-SW',
-};
+const { promoSets } = sets;
 
 function normalizeCard(card) {
   const {

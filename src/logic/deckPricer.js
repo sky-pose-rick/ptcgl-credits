@@ -1,8 +1,9 @@
 import ptcgoParser from '@sky-pose-rick/ptcgl-parser';
 import craftingCosts from './craftingCosts.js';
 import sellingCosts from './sellingCosts.js';
-import starterCards from './starterCards2022';
-import redirects from './redirects.js';
+import starterCards from './starterCards2023';
+// import redirects from './redirects.js';
+import sets from './sets.js';
 
 function determinePrice(card, data, priceList) {
   if (card.isEnergy) {
@@ -38,29 +39,32 @@ async function priceCard(card, isSelling) {
     return newCard;
   }
 
-  // if there is no ptcgoio code, skip this step
-  if (!card.ptcgoio.missing) {
+  /*
+    temporarily disable this feature for now
     // find cheaper/already owned alternatives when not checking sell price
     const redirectCard = redirects.cards[newCard.ptcgoio.id];
     if (!isSelling && redirectCard) {
       newCard.redirect = redirectCard;
       newCard.ptcgoio.id = redirectCard.target;
     }
+  */
 
-    // don't need to hit api for starter cards unless it checking sell price
-    const starterCard = starterCards.cards[card.ptcgoio.id];
-    if (!isSelling && starterCard) {
-      newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
-      newCard.costPerCopy = starterCard.cost;
-      newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
+  // don't need to hit api for starter cards unless it checking sell price
+  console.log(card);
+  const starterKey = `${card.set}-${card.code}`;
+  const starterCard = starterCards.cards[starterKey];
+  console.log(starterKey);
+  if (!isSelling && starterCard) {
+    newCard.toCraft = Math.max(0, newCard.amount - starterCard.amount);
+    newCard.costPerCopy = starterCard.cost;
+    newCard.totalCost = newCard.costPerCopy * newCard.toCraft;
 
-      return newCard;
-    }
+    return newCard;
   }
 
   // if there is no ptcgoio code, search with set and number instead
   const ptcgioURL = card.ptcgoio.missing
-    ? `https://api.pokemontcg.io/v2/cards?q=set.ptcgoCode:${card.set} number:${card.code}`
+    ? `https://api.pokemontcg.io/v2/cards?q=set.id:${sets.regularSets[card.set]} number:${card.code}`
     : `https://api.pokemontcg.io/v2/cards/${newCard.ptcgoio.id}`;
 
   let response;
