@@ -1,5 +1,6 @@
 import deckParser from '@sky-pose-rick/ptcgl-parser';
 import craftingCosts from './craftingCosts.js';
+import sets from './sets.js';
 
 function filterSpecialNames(cardName) {
   if (cardName.indexOf('Professor\'s Research') > -1) { return 'Professor\'s Research'; }
@@ -31,11 +32,15 @@ function determinePrice(card, data) {
 }
 
 async function getCardFromAPI(card, apiKey) {
-  const url = `https://api.pokemontcg.io/v2/cards?q=set.ptcgoCode:${card.set} number:${card.code}`;
+  const url = `https://api.pokemontcg.io/v2/cards?q=set.id:${sets.regularSets[card.set]} number:${card.code}`;
   let cardDetails;
   let response;
   try {
-    response = await fetch(url);
+    response = await fetch(url, {
+      headers: {
+        'X-Api-Key': apiKey,
+      },
+    });
   } catch (e) {
     console.error(e);
   }
