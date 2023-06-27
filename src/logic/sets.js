@@ -72,16 +72,20 @@ const regularSets = {
   LOR: 'swsh11',
   SIT: 'swsh12',
   CRZ: 'swsh12pt5',
+  SVP: 'svp',
   SVI: 'sv1',
+  PAL: 'sv2',
 
   //  limitless's codes for promo sets
   BWP: 'bwp',
   XYP: 'xyp',
   SMP: 'smp',
   SSP: 'swshp',
+  // SVP: 'svp'
 
   // play.limitless's promo sets
   'PR-SWSH': 'swshp',
+  'PR-SV': 'svp',
 };
 
 const promoSets = {
@@ -89,15 +93,24 @@ const promoSets = {
   'PR-XY': 'xyp-XY',
   'PR-SM': 'smp-SM',
   'PR-SW': 'swshp-SWSH',
+  'PR-SV': 'svp-',
 
   //  limitless's codes for promo sets
   BWP: 'bwp-BW',
   XYP: 'xyp-XY',
   SMP: 'smp-SM',
   SSP: 'swshp-SWSH',
+  SVP: 'svp-',
 
   // play.limitless's promo sets
   'PR-SWSH': 'swshp-SWSH',
+
+  // alt sets
+  /* BWALT: 'none',
+  XYALT: 'none',
+  SMALT: 'none',
+  SHSWALT: 'none',
+  SVALT: 'none', */
 };
 
 export default { regularSets, promoSets };
