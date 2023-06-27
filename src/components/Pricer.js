@@ -24,11 +24,16 @@ function Pricer(props) {
 
     priceDeck(textarea.value).then((result) => {
       if (result.cards.length > 0) {
-        const updatedCards = ownedCards.adjustCraftingWithOwned(result.cards);
-        setCards(updatedCards);
-        // recompute total
-        const updatedTotal = updatedCards.reduce((sum, card) => sum + card.totalCost, 0);
-        setTotal(updatedTotal);
+        if (!selling) { // crafting pricer
+          const updatedCards = ownedCards.adjustCraftingWithOwned(result.cards);
+          setCards(updatedCards);
+          // recompute total
+          const updatedTotal = updatedCards.reduce((sum, card) => sum + card.totalCost, 0);
+          setTotal(updatedTotal);
+        } else { // selling pricer
+          setCards(result.cards);
+          setTotal(result.total);
+        }
         setCardCount(result.cardCount);
         setListsAccepted(listsAccepted + 1);
       }
