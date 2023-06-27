@@ -13,5 +13,6 @@ Outputs the amount of credits earned if the whole deck were turned to credits. U
 
 ## Deck Simplifier
 
-Switches cards in the decklist with card rarities that come in the ptcgl starter decks. Also corrects some common mistakes in imports for energy and promo cards.
+~~Switches cards in the decklist with card rarities that come in the ptcgl starter decks. Also corrects some common mistakes in imports for energy and promo cards.~~  
+Currently not working.
 
