@@ -28,7 +28,6 @@ const rarityCosts = {
   'V': 250,
   'VM': 375,
   'Radiant Rare': 150,
-  'ex': 150,
   'Double Rare': 600,
 };
 
@@ -40,7 +39,7 @@ const subtypeCosts = {
   'VMAX': 375,
   'VSTAR': 375,
   'V-UNION': 250,
-  'ex': 150,
+  'ex': 250,
 };
 
 export default { rarityCosts, subtypeCosts };
