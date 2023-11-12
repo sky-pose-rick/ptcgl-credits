@@ -75,6 +75,9 @@ const regularSets = {
   SVP: 'svp',
   SVI: 'sv1',
   PAL: 'sv2',
+  OBF: 'sv3',
+  MEW: 'sv3pt5',
+  PAR: 'sv4',
 
   //  limitless's codes for promo sets
   BWP: 'bwp',
