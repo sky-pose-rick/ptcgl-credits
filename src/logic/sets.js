@@ -78,6 +78,8 @@ const regularSets = {
   OBF: 'sv3',
   MEW: 'sv3pt5',
   PAR: 'sv4',
+  // predict Paldean Fates api code
+  PAF: 'sv4pt5',
 
   //  limitless's codes for promo sets
   BWP: 'bwp',
